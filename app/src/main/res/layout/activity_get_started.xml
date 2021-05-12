@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GetStarted">
+    tools:context=".front.GetStarted">
 
     <ImageView
         android:id="@+id/imageView"
@@ -56,17 +56,17 @@
     <Button
         android:layout_width="230dp"
         android:layout_height="50dp"
-        android:layout_marginTop="145dp"
+        android:layout_marginTop="130dp"
         android:background="@drawable/button_background"
-        android:gravity="center"
-        android:textAllCaps="false"
         android:fontFamily="@font/montserrat_semi_bold"
+        android:gravity="center"
+        android:text="@string/getstarted"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/description"
-        app:layout_constraintVertical_bias="0.0"
-        android:text="@string/getstarted"/>
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
