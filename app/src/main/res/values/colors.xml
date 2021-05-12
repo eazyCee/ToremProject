@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="blue_main">#5c68be</color>
+    <color name="blue_dark">#2E3B8F</color>
     <color name="blue_secondary">#d8d5ff</color>
     <color name="grey_light">#d0cccc</color>
+    <color name="grey_medium">#FFC6C6C6</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>

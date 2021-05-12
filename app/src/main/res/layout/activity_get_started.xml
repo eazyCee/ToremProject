@@ -7,6 +7,7 @@
     tools:context=".GetStarted">
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="278dp"
         android:layout_height="340dp"
         android:layout_marginTop="100dp"
@@ -16,7 +17,56 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="400dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
+        android:text="@string/join"
+        android:textColor="@color/blue_main"
+        android:textSize="23sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_semi_bold"
+        android:gravity="center"
+        android:maxWidth="10sp"
+        android:text="plan, share, and  explore \n your  surrounding"
+        android:textColor="@color/grey_medium"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="HardcodedText"
+        tools:layout_editor_absoluteX="47dp" />
+
+    <Button
+        android:layout_width="230dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="145dp"
+        android:background="@drawable/button_background"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:fontFamily="@font/montserrat_semi_bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description"
+        app:layout_constraintVertical_bias="0.0"
+        android:text="@string/getstarted"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
