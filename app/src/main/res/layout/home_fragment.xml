@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_alignParentEnd="true"
@@ -55,5 +55,10 @@
         android:textSize="25sp"
         android:fontFamily="@font/montserrat_bold"
         tools:ignore="HardcodedText" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_TravelPlan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/item_travel_plan"/>
 
 </LinearLayout>
