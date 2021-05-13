@@ -8,18 +8,22 @@
     <item
         android:id="@+id/navigation_explore"
         android:icon="@drawable/noexplore"
+        android:iconTint="@color/grey_light"
         android:title="explore" />
     <item
         android:id="@+id/navigation_add"
         android:icon="@drawable/noadd"
+        android:iconTint="@color/grey_light"
         android:title="add" />
     <item
         android:id="@+id/navigation_search"
         android:icon="@drawable/nosearch"
+        android:iconTint="@color/grey_light"
         android:title="search" />
     <item
         android:id="@+id/navigation_scan"
         android:icon="@drawable/noscan"
+        android:iconTint="@color/grey_light"
         android:title="scan" />
 
 </menu>

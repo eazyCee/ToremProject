@@ -10,7 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="10dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="50dp"
@@ -31,20 +31,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
                 android:text="Hi, "
-                android:layout_marginTop="30dp"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                android:fontFamily="@font/montserrat_medium"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/grey_dark"
+                android:textSize="30sp"
+                android:fontFamily="@font/montserrat_semi_bold"
                 tools:ignore="HardcodedText" />
             <TextView
                 android:id="@+id/user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Maxi"
-                android:layout_marginTop="30dp"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                android:fontFamily="@font/montserrat_medium"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/grey_dark"
+                android:textSize="30sp"
+                android:fontFamily="@font/montserrat_semi_bold"
                 tools:ignore="HardcodedText" />
         </LinearLayout>
     </RelativeLayout>
@@ -54,7 +54,7 @@
         android:text="Welcome back"
         android:layout_marginLeft="25dp"
         android:textColor="@color/blue_main"
-        android:textSize="25sp"
+        android:textSize="28sp"
         android:fontFamily="@font/montserrat_bold"
         tools:ignore="HardcodedText" />
     <TextView
@@ -62,18 +62,38 @@
         android:layout_height="wrap_content"
         android:text="Popular plan"
         android:layout_marginLeft="25dp"
-        android:textColor="@color/blue_main"
-        android:textSize="17sp"
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/grey_dark"
+        android:layout_marginTop="25dp"
+        android:textSize="20sp"
         android:fontFamily="@font/montserrat_semi_bold"
         tools:ignore="HardcodedText" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_TravelPlan"
-        android:layout_marginTop="10dp"
         android:layout_marginLeft="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_travel_plan"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Discover new places"
+        android:layout_marginLeft="25dp"
+        android:textColor="@color/grey_dark"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:textSize="20sp"
+        android:fontFamily="@font/montserrat_semi_bold"
+        tools:ignore="HardcodedText" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_TravelSpot"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_travel_spot"/>
 
 </LinearLayout>
