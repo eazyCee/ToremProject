@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".home.HomeActivity">
 
     <ImageButton
         android:adjustViewBounds="true"
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_bold"
         android:text="Log In"
-        android:textColor="@color/toremblue"
+        android:textColor="@color/blue_main"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.178"
@@ -40,7 +40,7 @@
         android:layout_marginStart="57dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="to your account"
-        android:textColor="@color/toremblue"
+        android:textColor="@color/blue_main"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -70,16 +70,17 @@
 
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="156dp"
-        android:background="@drawable/roundedbutton"
+        android:layout_width="230dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="600dp"
+        android:background="@drawable/button_background"
         android:fontFamily="@font/montserrat_bold"
         android:padding="10dp"
         android:text="Log In"
+        android:textAllCaps="false"
         android:textColor="#ffffff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

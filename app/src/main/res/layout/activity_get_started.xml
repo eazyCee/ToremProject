@@ -56,7 +56,7 @@
     <Button
         android:layout_width="230dp"
         android:layout_height="50dp"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="600dp"
         android:background="@drawable/button_background"
         android:fontFamily="@font/montserrat_semi_bold"
         android:gravity="center"
@@ -65,7 +65,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
 

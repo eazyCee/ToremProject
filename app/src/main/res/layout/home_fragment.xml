@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.homefragment.Home"
     android:orientation="vertical">
 
@@ -36,6 +37,7 @@
                 android:fontFamily="@font/montserrat_medium"
                 tools:ignore="HardcodedText" />
             <TextView
+                android:id="@+id/user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Maxi"
@@ -50,15 +52,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Welcome back"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="25dp"
         android:textColor="@color/blue_main"
         android:textSize="25sp"
         android:fontFamily="@font/montserrat_bold"
         tools:ignore="HardcodedText" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Popular plan"
+        android:layout_marginLeft="25dp"
+        android:textColor="@color/blue_main"
+        android:textSize="17sp"
+        android:fontFamily="@font/montserrat_semi_bold"
+        tools:ignore="HardcodedText" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_TravelPlan"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_travel_plan"/>
 
 </LinearLayout>
