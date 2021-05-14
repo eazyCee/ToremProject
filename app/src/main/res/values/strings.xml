@@ -3,4 +3,7 @@
     <string name="join">JOIN THE JOURNEY</string>
     <string name="PSE"></string>
     <string name="getstarted">Get Started</string>
+    <string name="title_activity_splash_screen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
