@@ -24,44 +24,7 @@ class SignUpActivity : BaseActivity() {
         setContentView(binding.root)
 
         binding.signupButton.setOnClickListener{
-            validateRegisterDetails(binding)
-            val isValid: Boolean = validateRegisterDetails(binding)
-            when{
-                isValid == true->{
-                    val email: String = binding.inputEmail.text.toString().trim{it<= ' '}
-                    val password: String = binding.inputPassword.text.toString().trim{it<= ' '}
-
-                    //Create Firebase instance and register user
-                    FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password)
-                        .addOnCompleteListener(
-                            OnCompleteListener<AuthResult>{ task ->
-                                //if registration is successful
-                                if(task.isSuccessful){
-                                    val firebaseUser: FirebaseUser = task.result!!.user!!
-
-                                    Toast.makeText(
-                                        this,
-                                        "You are registered!",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-
-                                    val intent = Intent(this, HomeActivity::class.java)
-                                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                    intent.putExtra("user_id",firebaseUser.uid)
-                                    intent.putExtra("email", email)
-                                    startActivity(intent)
-                                    finish()
-                                }else{
-                                    Toast.makeText(
-                                        this,
-                                        task.exception!!.message.toString(),
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                }
-                            }
-                        )
-                }
-            }
+            registerUser(binding)
         }
     }
     
@@ -88,9 +51,45 @@ class SignUpActivity : BaseActivity() {
                 false
             }
             else->{
-                showErrorSnackBar("You're in!", false)
+         //       showErrorSnackBar("You're in!", false)
                 true
             }
+        }
+    }
+
+    private fun registerUser(binding: ActivitySignUpBinding){
+        if(validateRegisterDetails(binding)){
+
+            showProgressDialog(resources.getString(R.string.please_wait))
+
+            val email: String = binding.inputEmail.text.toString().trim{it<= ' '}
+            val password: String = binding.inputPassword.text.toString().trim{it<= ' '}
+
+            //Create Firebase instance and register user
+            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password)
+                    .addOnCompleteListener(
+                            OnCompleteListener<AuthResult>{ task ->
+
+                                hideProgressDialog()
+
+                                //if registration is successful
+                                if(task.isSuccessful){
+                                    val firebaseUser: FirebaseUser = task.result!!.user!!
+
+                                    showErrorSnackBar(
+                                            "You're in! Your user id is ${firebaseUser.uid}", false
+                                    )
+                                    val intent = Intent(this, HomeActivity::class.java)
+                                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                    intent.putExtra("user_id",firebaseUser.uid)
+                                    intent.putExtra("email", email)
+                                    startActivity(intent)
+                                    finish()
+                                }else{
+                                    showErrorSnackBar(task.exception!!.message.toString(), true)
+                                }
+                            }
+                    )
         }
     }
 
