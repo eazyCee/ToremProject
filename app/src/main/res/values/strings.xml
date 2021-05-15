@@ -7,5 +7,8 @@
     <string name="no_password">Please enter your password</string>
     <string name="no_conf_password">Please confirm your password</string>
     <string name="no_name">Please enter your name</string>
-    <string name="password_no_match">Your password doesnt match</string>
+    <string name="password_no_match">Your password doesn't match</string>
+    <string name="title_activity_splash_screen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
