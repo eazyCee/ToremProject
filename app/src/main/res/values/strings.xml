@@ -3,4 +3,9 @@
     <string name="join">JOIN THE JOURNEY</string>
     <string name="PSE"></string>
     <string name="getstarted">Get Started</string>
+    <string name="no_email">Please enter your email address</string>
+    <string name="no_password">Please enter your password</string>
+    <string name="no_conf_password">Please confirm your password</string>
+    <string name="no_name">Please enter your name</string>
+    <string name="password_no_match">Your password doesnt match</string>
 </resources>
