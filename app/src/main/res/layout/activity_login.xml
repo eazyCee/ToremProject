@@ -13,7 +13,7 @@
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:background="null"
+        android:background="@color/transparant"
         android:src="@drawable/ic_baseline_arrow_back_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_bold"
-        android:text="Log In"
+        android:text="@string/log_in"
         android:textColor="@color/blue_main"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="57dp"
         android:fontFamily="@font/montserrat_bold"
-        android:text="to your account"
+        android:text="@string/to_your_account"
         android:textColor="@color/blue_main"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,22 +49,21 @@
         android:id="@+id/inputPassword"
         android:layout_width="304dp"
         android:layout_height="46dp"
-        android:hint="Password"
+        android:hint="@string/password"
         android:layout_marginStart="56dp"
         android:layout_marginTop="20dp"
         android:ems="10"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputUsername" />
+        app:layout_constraintTop_toBottomOf="@+id/inputEmail" />
 
     <EditText
-        android:id="@+id/inputUsername"
+        android:id="@+id/inputEmail"
         android:layout_width="304dp"
         android:layout_height="46dp"
         android:layout_marginStart="56dp"
         android:layout_marginTop="92dp"
         android:ems="10"
-        android:hint="Username"
-        android:inputType="numberPassword"
+        android:hint="@string/email"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -76,11 +75,39 @@
         android:background="@drawable/button_background"
         android:fontFamily="@font/montserrat_bold"
         android:padding="10dp"
-        android:text="Log In"
+        android:text="@string/log_in"
         android:textAllCaps="false"
         android:textColor="#ffffff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginButton"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/don_t_have_an_account" />
+
+        <TextView
+            android:id="@+id/signUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="@string/sign_up"
+            android:textColor="@color/light_blue_600"
+            android:textSize="15sp" />
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
