@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "570251401670",
+    "firebase_url": "https://torem-project-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "torem-project",
+    "storage_bucket": "torem-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:570251401670:android:7c9a50886cade0886d7ac7",
+        "android_client_info": {
+          "package_name": "com.example.torem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "570251401670-c0hqauskkgklsgv3o69f26dkh4s8vtdv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.torem",
+            "certificate_hash": "62d2a86f17b4aae0db641a64573b503236b29421"
+          }
+        },
+        {
+          "client_id": "570251401670-shn9tl8q9b7pvlmb5ageb6r5b36knp33.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAP1OU897Z3nTMXArPa2VBJnk9gGDWdoQk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "570251401670-shn9tl8q9b7pvlmb5ageb6r5b36knp33.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

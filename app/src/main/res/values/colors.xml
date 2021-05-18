@@ -8,6 +8,8 @@
     <color name="grey_medium">#FFC6C6C6</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name ="pink">#F44336</color>
+    <color name="green">#64F169</color>
     <color name="transparant">#32000000</color>
     <color name="light_blue_600">#FF039BE5</color>
     <color name="light_blue_900">#FF01579B</color>
