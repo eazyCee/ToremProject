@@ -1,12 +1,8 @@
-package com.example.torem.home
+package com.example.torem.Activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.View
 import android.widget.Toast
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.example.torem.R
 import com.example.torem.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {

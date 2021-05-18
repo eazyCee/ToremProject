@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Torem">
         <activity
-            android:name=".home.SpalshScreenActivity"
+            android:name=".Activity.SpalshScreenActivity"
             android:theme="@style/SplashScreenTheme">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
@@ -20,7 +20,7 @@
         <activity android:name=".BaseActivity"></activity>
         <activity android:name=".front.SignUpActivity" />
         <activity android:name=".front.LoginActivity" />
-        <activity android:name=".home.HomeActivity">
+        <activity android:name=".Activity.HomeActivity">
         </activity>
         <meta-data
             android:name="preloaded_fonts"

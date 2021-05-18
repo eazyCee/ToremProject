@@ -6,6 +6,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class TravelPlan(
         var name:String,
+        var userID:String,
         var description:String,
         var photo:String,
         var review:String,

@@ -1,4 +1,4 @@
-package com.example.torem.home
+package com.example.torem.Activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
