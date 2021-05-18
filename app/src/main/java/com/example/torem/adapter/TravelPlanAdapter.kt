@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
 class TravelPlanAdapter: RecyclerView.Adapter<TravelPlanAdapter.ListViewHolder>() {
-    class ListViewHolder(private val binding:) : RecyclerView.ViewHolder(itemView) {
+    class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     }
 
