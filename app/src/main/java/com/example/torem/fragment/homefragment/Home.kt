@@ -70,8 +70,6 @@ class Home : Fragment() {
     override fun onStart() {
         super.onStart()
         placesAdapter!!.startListening()
-        (activity as AppCompatActivity?)!!.supportActionBar!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        (activity as AppCompatActivity?)!!.supportActionBar!!.elevation = 0F
     }
 
     override fun onDestroy() {

@@ -31,12 +31,4 @@ class Search : Fragment() {
         viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
         // TODO: Use the ViewModel
     }
-    override fun onStart() {
-        super.onStart()
-        (activity as AppCompatActivity?)!!.supportActionBar!!.setBackgroundDrawable(
-            ColorDrawable(
-                Color.TRANSPARENT)
-        )
-        (activity as AppCompatActivity?)!!.supportActionBar!!.elevation = 0F
-    }
 }

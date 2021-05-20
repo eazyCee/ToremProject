@@ -9,24 +9,28 @@
         android:roundIcon="@mipmap/app_icon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Torem">
+        <activity android:name=".Activity.TravelPlanActivity">
+        </activity>
         <activity
             android:name=".Activity.SpalshScreenActivity"
             android:theme="@style/SplashScreenTheme">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-    </activity>
-        <activity android:name=".BaseActivity"></activity>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".BaseActivity" />
         <activity android:name=".front.SignUpActivity" />
         <activity android:name=".front.LoginActivity" />
-        <activity android:name=".Activity.HomeActivity">
-        </activity>
-        <activity android:name=".Activity.DetailActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".Activity.HomeActivity" />
+        <activity
+            android:name=".Activity.DetailActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+
 </manifest>

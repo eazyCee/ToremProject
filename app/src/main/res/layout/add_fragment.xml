@@ -1,13 +1,250 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.addfragment.Add">
+    tools:context=".fragment.addfragment.Add"
+    android:scrollbars="none"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
+            android:src="@drawable/bromo"
+            android:scaleType="centerCrop"/>
+        <ImageView
+            android:id="@+id/add_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
+            tools:src="@drawable/bromo"
+            android:scaleType="centerCrop"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:src="@color/transparant"
+            android:scaleType="centerCrop"/>
 
-</FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="360dp"
+                android:layout_marginTop="25dp"
+                android:background="@color/transparants"
+                android:src="@drawable/ic_baseline_add_a_photo_24"
+                android:tint="@color/white" />
+            <EditText
+                android:id="@+id/edit_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginEnd="35dp"
+                android:backgroundTint="@color/transparants"
+                android:fontFamily="@font/montserrat_bold"
+                android:textSize="25sp"
+                android:hint="New Plan Title"
+                android:maxLength="15"
+                android:textColor="@color/white"
+                android:textColorHint="#C9FFFFFF" />
+
+            <EditText
+                android:id="@+id/edit_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginEnd="35dp"
+                android:backgroundTint="@color/transparants"
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:textSize="15sp"
+                android:hint="type description"
+                android:maxLength="50"
+                android:textColor="@color/white"
+                android:textColorHint="#C9FFFFFF" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_marginTop="220dp"
+        app:cardCornerRadius="28dp"
+        android:fadingEdgeLength="10dp"
+        android:elevation="0dp"
+        android:outlineProvider="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="350dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            app:cardCornerRadius="100dp"
+            app:strokeColor="@color/grey_dark"
+            app:strokeWidth="2dp"
+            android:elevation="0dp">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Type Location Here"
+                android:layout_marginStart="10dp"
+                android:textAlignment="center"
+                android:layout_marginEnd="10dp"
+                android:textSize="17sp"
+
+                android:backgroundTint="@color/transparants"/>
+        </com.google.android.material.card.MaterialCardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#CAD1D8"
+                app:cardCornerRadius="23dp"
+                android:layout_marginTop="25dp">
+                <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:background="@color/transparants"
+               android:layout_gravity="center">
+                <RadioButton
+                    android:layout_width="31dp"
+                    android:layout_height="31dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_gravity="center"
+                    android:button="@color/transparants"
+                    android:background="@drawable/image_selector"/>
+                <RadioButton
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:button="@color/transparants"
+                    android:layout_gravity="center"
+                    android:background="@drawable/image_selector2"/>
+                <RadioButton
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:button="@color/transparants"
+                    android:layout_gravity="center"
+                    android:background="@drawable/image_selector3"/>
+                </RadioGroup>
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.card.MaterialCardView
+            android:layout_width="350dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            app:cardCornerRadius="100dp"
+            app:strokeColor="@color/grey_dark"
+            app:strokeWidth="2dp"
+            android:elevation="0dp">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Type Location Here"
+                android:layout_marginStart="10dp"
+                android:textAlignment="center"
+                android:layout_marginEnd="10dp"
+                android:textSize="17sp"
+
+                android:backgroundTint="@color/transparants"/>
+        </com.google.android.material.card.MaterialCardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#CAD1D8"
+                app:cardCornerRadius="23dp"
+                android:layout_marginTop="25dp">
+                <RadioGroup
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:background="@color/transparants"
+               android:layout_gravity="center">
+                <RadioButton
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_gravity="center"
+                    android:button="@color/transparants"
+                    android:background="@drawable/image_selector"/>
+                <RadioButton
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:button="@color/transparants"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/image_selector2"/>
+                <RadioButton
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:button="@color/transparants"
+                    android:layout_gravity="center"
+                    android:background="@drawable/image_selector3"/>
+                </RadioGroup>
+            </androidx.cardview.widget.CardView>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="350dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                app:cardCornerRadius="100dp"
+                app:strokeColor="@color/grey_dark"
+                app:strokeWidth="2dp"
+                android:elevation="0dp">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Type Location Here"
+                    android:layout_marginStart="10dp"
+                    android:textAlignment="center"
+                    android:layout_marginEnd="10dp"
+                    android:textSize="17sp"
+
+                    android:backgroundTint="@color/transparants"/>
+            </com.google.android.material.card.MaterialCardView>
+            <Button
+                android:layout_width="230dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/button_background"
+                android:fontFamily="@font/montserrat_semi_bold"
+                android:gravity="center"
+                android:text="create"
+                android:textAllCaps="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+    </FrameLayout>
+</ScrollView>

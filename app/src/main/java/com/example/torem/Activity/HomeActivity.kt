@@ -33,7 +33,6 @@ class HomeActivity : AppCompatActivity() {
             R.id.navigation_search,
             R.id.navigation_scan
         ).build()
-        setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
     }
