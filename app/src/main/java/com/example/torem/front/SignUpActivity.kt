@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import com.example.torem.Activity.HomeActivity
 import com.example.torem.BaseActivity
 import com.example.torem.R
 import com.google.android.gms.tasks.OnCompleteListener
@@ -13,8 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.AuthResult
 import com.example.torem.databinding.ActivitySignUpBinding
-import com.example.torem.home.HomeActivity
-import com.google.android.material.snackbar.Snackbar
+
 
 
 class SignUpActivity : BaseActivity() {

@@ -10,8 +10,9 @@
     <color name="white">#FFFFFFFF</color>
     <color name ="pink">#F44336</color>
     <color name="green">#64F169</color>
-    <color name="transparant">#32000000</color>
-    <color name="light_blue_600">#FF039BE5</color>
+    <color name="transparant">#404A4A4A</color>
+    <color name="transparants">#00FFFFFF</color>
+    <color name="light_blue_600">#E59203</color>
     <color name="light_blue_900">#FF01579B</color>
     <color name="light_blue_A200">#FF40C4FF</color>
     <color name="light_blue_A400">#FF00B0FF</color>

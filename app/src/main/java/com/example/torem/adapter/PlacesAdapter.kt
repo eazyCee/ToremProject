@@ -1,60 +1,49 @@
 package com.example.torem.adapter
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.torem.R
+import com.example.torem.Activity.DetailActivity
 import com.example.torem.data.Places
 import com.example.torem.databinding.ItemTravelSpotBinding
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.libraries.places.api.model.Place
-import com.google.android.libraries.places.api.net.FetchPhotoRequest
-import com.google.android.libraries.places.api.net.FetchPlaceRequest
 
-class PlacesAdapter : RecyclerView.Adapter<PlacesAdapter.ListViewHolder>() {
 
-    private  lateinit var onItemCLickCallback: OnItemClickCallback
-    private val mData = ArrayList<Places>()
+class PlacesAdapter(options: FirestoreRecyclerOptions<Places>) :
+    FirestoreRecyclerAdapter<Places, PlacesAdapter.ListViewHolder>(options) {
 
-    fun setData(items: ArrayList<Places>) {
-        mData.clear()
-        mData.addAll(items)
-        notifyDataSetChanged()
-    }
+     var places : Places?=null
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val view = ItemTravelSpotBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ListViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        holder.bind(mData[position])
-    }
-
-    override fun getItemCount(): Int = mData.size
-
-    inner class ListViewHolder(private val binding:ItemTravelSpotBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(placesItems: Places) {
-            with(binding) {
-                tsName.text = placesItems.name
-                tsLocation.text = placesItems.location
-                Glide.with(itemView.context)
-                    .load(placesItems.photo)
-                    .into(tsImage)
-                slide.setOnClickListener{
-                    onItemCLickCallback.onItemClicked(placesItems)
-                }
-            }
-
+    override fun onBindViewHolder(holder: ListViewHolder, position: Int, model: Places) {
+        holder.name.text = model.name
+        holder.location.text = model.location
+        Glide.with(holder.itemView.context)
+            .load(model.photo)
+            .into(holder.photo)
+        holder.itemView.setOnClickListener {
+            val context = holder.name.context
+            val intent = Intent(context, DetailActivity::class.java)
+            intent.putExtra("id", model.placeId)
+            context.startActivity(intent)
         }
     }
-    fun setOnItemClickCallback(onItemClickCallback : PlacesAdapter.OnItemClickCallback){
-        this.onItemCLickCallback= onItemClickCallback
-    }
-    interface OnItemClickCallback {
-        fun onItemClicked(data:Places)
+    inner class ListViewHolder(private val binding:ItemTravelSpotBinding) : RecyclerView.ViewHolder(binding.root){
+        var name = binding.tsName
+        var location = binding.tsLocation
+        var photo = binding.tsImage
+        var id = binding.toString()
     }
 }
 

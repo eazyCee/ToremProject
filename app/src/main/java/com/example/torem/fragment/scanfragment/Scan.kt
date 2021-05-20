@@ -1,11 +1,14 @@
 package com.example.torem.fragment.scanfragment
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import com.example.torem.R
 
 class Scan : Fragment() {
@@ -21,6 +24,7 @@ class Scan : Fragment() {
         savedInstanceState : Bundle?
     ) : View? {
         return inflater.inflate(R.layout.scan_fragment, container, false)
+
     }
 
     override fun onActivityCreated(savedInstanceState : Bundle?) {
@@ -28,5 +32,12 @@ class Scan : Fragment() {
         viewModel = ViewModelProvider(this).get(ScanViewModel::class.java)
         // TODO: Use the ViewModel
     }
-
+    override fun onStart() {
+        super.onStart()
+        (activity as AppCompatActivity?)!!.supportActionBar!!.setBackgroundDrawable(
+            ColorDrawable(
+                Color.TRANSPARENT)
+        )
+        (activity as AppCompatActivity?)!!.supportActionBar!!.elevation = 0F
+    }
 }

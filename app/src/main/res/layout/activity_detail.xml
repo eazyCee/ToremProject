@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.DetailActivity"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
+    android:scrollbars="none">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/dp_photo"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            tools:src="@drawable/bromo"
+            android:scaleType="centerCrop"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="23dp"
+            android:background="@color/transparants"
+            android:src="@drawable/lingkaran" />
+
+        <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:layout_marginTop="250dp"
+                app:cardCornerRadius="28dp"
+                android:fadingEdgeLength="10dp"
+                android:elevation="0dp"
+                android:outlineProvider="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/dp_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="23dp"
+                        android:layout_marginTop="40dp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:textColor="@color/blue_main"
+                        android:textSize="25sp"
+                        tools:text="Gunung Bromo" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="15dp"
+                        android:orientation="horizontal"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_baseline_location_on_24"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:id="@+id/dp_location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="20dp"
+                            android:fontFamily="@font/montserrat_semi_bold"
+                            android:textColor="@color/grey_dark"
+                            android:textSize="13sp"
+                            tools:text="Jl.Bromo etc etc" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="15dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_star_border_24"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:id="@+id/dp_review"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:textColor="@color/grey_dark"
+                            android:textSize="15sp"
+                            tools:text="4.5" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="/5"
+                            android:textColor="@color/grey_dark"
+                            android:textSize="15sp"
+                            tools:ignore="HardcodedText" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="23dp"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:textColor="@color/blue_main"
+                        android:textSize="20sp"
+                        android:text="About" />
+
+                    <TextView
+                        android:id="@+id/dp_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="23dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="23dp"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        android:textColor="@color/grey_dark"
+                        android:textAlignment="inherit"
+                        android:textSize="15sp"
+                        android:text="Life is about growth and exploration, not achieving a fixed state of balance. You have a very limited time on earth to experience all that you can. Figuring out how to squeeze the most out of your family, work, and spirituality is your life's purpose. Go do it.\n\n-Mel Robbins"
+                        tools:ignore="HardcodedText" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="23dp"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:textColor="@color/blue_main"
+                        android:textSize="20sp"
+                        android:text="Contact" />
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="10dp">
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="20dp"
+                            android:layout_marginStart="23dp"
+                            android:fontFamily="@font/montserrat_semi_bold"
+                            android:textColor="@color/grey_dark"
+                            android:textSize="15sp"
+                            android:src = "@drawable/ic_baseline_phone_24"
+                            tools:ignore="HardcodedText" />
+                        <TextView
+                            android:id="@+id/dp_contact"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:fontFamily="@font/montserrat_semi_bold"
+                            android:textColor="@color/grey_dark"
+                            android:textSize="15sp"
+                            tools:text="0822577123414" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="23dp"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:textColor="@color/blue_main"
+                        android:textSize="20sp"
+                        android:text="Events" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="360dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="23dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="23dp"
+                        app:cardCornerRadius="12dp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/forest" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@color/transparant" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="30dp"
+                                android:fontFamily="@font/montserrat_semi_bold"
+                                android:gravity="center|left"
+                                android:text="Clean Air"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                tools:ignore="HardcodedText" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:fontFamily="@font/montserrat_semi_bold"
+                                android:gravity="left"
+                                android:text="10 May 2022"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                tools:ignore="HardcodedText" />
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="360dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="23dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="23dp"
+                        app:cardCornerRadius="12dp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/sate" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@color/transparant" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="30dp"
+                                android:fontFamily="@font/montserrat_semi_bold"
+                                android:gravity="center|left"
+                                android:text="Food Festival"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                tools:ignore="HardcodedText" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginBottom="10dp"
+                                android:fontFamily="@font/montserrat_semi_bold"
+                                android:gravity="left"
+                                android:text="12 June 2022"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                tools:ignore="HardcodedText" />
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="360dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="23dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="23dp"
+                        app:cardCornerRadius="12dp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/water" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@color/transparant" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="30dp"
+                                android:fontFamily="@font/montserrat_semi_bold"
+                                android:gravity="center|left"
+                                android:text="Morea Event"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                tools:ignore="HardcodedText" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="10dp"
+
+                                android:layout_marginBottom="10dp"
+                                android:fontFamily="@font/montserrat_semi_bold"
+                                android:gravity="left"
+                                android:text="20 October 2022"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                tools:ignore="HardcodedText" />
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:src="@drawable/places_powered_by_google_light" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+    </FrameLayout>
+</ScrollView>

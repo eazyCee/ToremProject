@@ -22,12 +22,12 @@
             android:id="@+id/tp_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:src="@drawable/bromo"
+            android:src="@drawable/bromo"
             android:scaleType="centerCrop"/>
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:src="@color/transparant"
+            android:src="@color/transparant"
             android:scaleType="centerCrop"/>
 
     </androidx.cardview.widget.CardView>
@@ -38,7 +38,7 @@
             android:layout_marginTop="7dp"
             android:textSize="12dp"
             android:fontFamily="@font/montserrat_bold"
-            tools:text="Mountain air"
+            android:text="Mountain air"
             android:gravity="center"
             android:textColor="@color/grey_light"/>
  </LinearLayout>

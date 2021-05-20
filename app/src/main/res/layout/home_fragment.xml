@@ -1,100 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.homefragment.Home"
     android:orientation="vertical"
-    android:id="@+id/swiperefresh">
+    android:id="@+id/swiperefresh"
+    android:scrollbars="none">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp">
+        android:orientation="vertical">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="20dp"
-            android:src="@drawable/dummyphoto_" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:text="Hi, "
-                android:layout_marginTop="20dp"
-                android:textColor="@color/grey_dark"
-                android:textSize="30sp"
-                android:fontFamily="@font/montserrat_semi_bold"
-                tools:ignore="HardcodedText" />
-            <TextView
-                android:id="@+id/user_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Maxi"
-                android:layout_marginTop="20dp"
-                android:textColor="@color/grey_dark"
-                android:textSize="30sp"
-                android:fontFamily="@font/montserrat_semi_bold"
-                tools:ignore="HardcodedText" />
-        </LinearLayout>
-    </RelativeLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Welcome back"
-        android:layout_marginLeft="25dp"
-        android:textColor="@color/blue_main"
-        android:textSize="28sp"
-        android:fontFamily="@font/montserrat_bold"
-        tools:ignore="HardcodedText" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Popular plan"
-        android:layout_marginLeft="25dp"
-        android:layout_marginBottom="20dp"
-        android:textColor="@color/grey_dark"
-        android:layout_marginTop="25dp"
-        android:textSize="20sp"
-        android:fontFamily="@font/montserrat_semi_bold"
-        tools:ignore="HardcodedText" />
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_TravelPlan"
-        android:layout_marginLeft="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_travel_plan"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Discover new places"
-        android:layout_marginLeft="25dp"
-        android:textColor="@color/grey_dark"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:textSize="20sp"
-        android:fontFamily="@font/montserrat_semi_bold"
-        tools:ignore="HardcodedText" />
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_TravelSpot"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_travel_spot"/>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/dummyphoto_" />
+        </RelativeLayout>
 
-</LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:text="Hi, "
+                    android:textColor="@color/grey_dark"
+                    android:textSize="30sp"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:text="Maxi"
+                    android:textColor="@color/grey_dark"
+                    android:textSize="30sp"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Welcome back"
+            android:textColor="@color/blue_main"
+            android:textSize="28sp"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:text="Popular plan"
+            android:textColor="@color/grey_dark"
+            android:textSize="20sp"
+            tools:ignore="HardcodedText" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_TravelPlan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_travel_plan" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/montserrat_semi_bold"
+            android:text="Discover new places"
+            android:textColor="@color/grey_dark"
+            android:textSize="20sp"
+            tools:ignore="HardcodedText" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_TravelSpot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:spanCount="4"
+            tools:itemCount="7"
+            tools:listitem="@layout/item_travel_spot"
+            tools:orientation="vertical" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/white"
+            android:orientation="vertical"/>
+    </LinearLayout>
+
+</ScrollView>

@@ -16,6 +16,6 @@ class SpalshScreenActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed( {
             startActivity(Intent (this,HomeActivity::class.java))
             finish()
-        },3000)
+        },5000)
     }
 }

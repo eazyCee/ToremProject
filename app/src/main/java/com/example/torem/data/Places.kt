@@ -1,29 +1,27 @@
 package com.example.torem.data
 
-import android.os.Parcelable
-import kotlinx.parcelize.Parcelize
 
-@Parcelize
-data class Places(
-        var name:String?="",
-        var placeId:String?="",
-        var location:String?="",
-        var description:String?="",
-        var photo:String?="",
-        var review:String?="",
-        var reviewer:String?="",
-        var source:String?="",
+class Places {
+        var name:String?=null
+        var placeId:String?=null
+        var location:String?=null
+        var description:String?=null
+        var photo:String?=null
+        var review:String?=null
+        var reviewer:String?=null
+        var source:String?=null
 
-        var event1:String?="",
-        var event2:String?="",
-        var event3:String?="",
+        var event1:String?=null
+        var event2:String?=null
+        var event3:String?=null
 
-        var eDate1:String?="",
-        var eDate2:String?="",
-        var eDate3:String?="",
+        var eDate1:String?=null
+        var eDate2:String?=null
+        var eDate3:String?=null
 
-        var eTime1:String?="",
-        var eTime2:String?="",
-        var eTime3:String?="",
+        var eTime1:String?=null
+        var eTime2:String?=null
+        var eTime3:String?=null
 
-):Parcelable
+        constructor()
+}
