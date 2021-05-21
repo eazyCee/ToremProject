@@ -117,36 +117,42 @@
                 app:cardBackgroundColor="#CAD1D8"
                 app:cardCornerRadius="23dp"
                 android:layout_marginTop="25dp">
-                <RadioGroup
+            <RadioGroup
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:orientation="horizontal"
                 android:background="@color/transparants"
                android:layout_gravity="center">
                 <RadioButton
-                    android:layout_width="31dp"
-                    android:layout_height="31dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
                     android:layout_gravity="center"
-                    android:button="@color/transparants"
-                    android:background="@drawable/image_selector"/>
+                    android:button="@null"
+                    android:drawableTop="@drawable/image_selector"
+                    android:padding="5dp"
+                    android:background="@color/transparants"/>
                 <RadioButton
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:button="@color/transparants"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/image_selector2"/>
+                    android:button="@null"
+                    android:drawableTop="@drawable/image_selector2"
+                    android:padding="5dp"
+                    android:background="@color/transparants"/>
                 <RadioButton
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:button="@color/transparants"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/image_selector3"/>
+                    android:button="@null"
+                    android:drawableTop="@drawable/image_selector3"
+                    android:padding="5dp"
+                    android:background="@color/transparants"/>
                 </RadioGroup>
             </androidx.cardview.widget.CardView>
 
@@ -183,29 +189,35 @@
                 android:background="@color/transparants"
                android:layout_gravity="center">
                 <RadioButton
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
                     android:layout_gravity="center"
-                    android:button="@color/transparants"
-                    android:background="@drawable/image_selector"/>
+                    android:button="@null"
+                    android:drawableTop="@drawable/image_selector"
+                    android:padding="5dp"
+                    android:background="@color/transparants"/>
                 <RadioButton
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:button="@color/transparants"
-                    android:layout_gravity="center_vertical"
-                    android:background="@drawable/image_selector2"/>
-                <RadioButton
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginEnd="15dp"
-                    android:button="@color/transparants"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/image_selector3"/>
+                    android:button="@null"
+                    android:drawableTop="@drawable/image_selector2"
+                    android:padding="5dp"
+                    android:background="@color/transparants"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_gravity="center"
+                    android:button="@null"
+                    android:drawableTop="@drawable/image_selector3"
+                    android:padding="5dp"
+                    android:background="@color/transparants"/>
                 </RadioGroup>
             </androidx.cardview.widget.CardView>
             <com.google.android.material.card.MaterialCardView
