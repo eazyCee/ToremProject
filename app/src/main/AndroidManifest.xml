@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/app_icon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Torem">
-        <activity android:name=".Activity.TravelPlanActivity">
-        </activity>
+        <activity android:name=".Activity.ProfileActivity"></activity>
+        <activity android:name=".Activity.TravelPlanActivity"></activity>
         <activity
             android:name=".Activity.SpalshScreenActivity"
             android:theme="@style/SplashScreenTheme">
