@@ -4,10 +4,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
+import com.example.torem.Activity.HomeActivity
 import com.example.torem.BaseActivity
 import com.example.torem.R
+import com.example.torem.data.User
 import com.example.torem.databinding.ActivityLoginBinding
+import com.example.torem.firestore.FirestoreClass
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : BaseActivity(), View.OnClickListener {
@@ -65,12 +69,23 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                         hideProgressDialog()
 
                         if(task.isSuccessful){
-                            showErrorSnackBar("You are logged in.", false)
+                            FirestoreClass().getUserDetails(this)
                         } else{
+                            hideProgressDialog()
                             showErrorSnackBar(task.exception!!.message.toString(), true)
                         }
 
             }
         }
+    }
+
+    fun userLoggedInSuccessfully(user: User){
+        hideProgressDialog()
+
+        Log.i("Name: ",user.name)
+        Log.i("Email: ",user.email)
+
+        startActivity(Intent(this, HomeActivity::class.java))
+        finish()
     }
 }
