@@ -59,8 +59,9 @@ class FirestoreClass {
                 val editor: SharedPreferences.Editor = sharedPreferences.edit()
                 editor.putString(
                     "logged_in_username",
-                    "${user.name}"
+                    "${user.username}"
                 )
+                editor.apply()
 
 
                 when(activity){
