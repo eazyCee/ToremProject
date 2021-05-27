@@ -5,9 +5,11 @@ import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
+import com.example.torem.Activity.EditProfileActivity
 import com.example.torem.data.User
 import com.example.torem.front.LoginActivity
 import com.example.torem.front.SignUpActivity
+import com.example.torem.util.Utils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
@@ -52,14 +54,22 @@ class FirestoreClass {
                 val user = document.toObject(User::class.java)!!
 
                 val sharedPreferences = activity.getSharedPreferences(
-                    "ToremPref",
+                    Utils.TOREM_PREFS,
                     Context.MODE_PRIVATE
                 )
 
                 val editor: SharedPreferences.Editor = sharedPreferences.edit()
                 editor.putString(
-                    "logged_in_username",
+                    Utils.CURRENT_USERNAME,
                     "${user.username}"
+                )
+                editor.putString(
+                    "user_description",
+                    "${user.desc}"
+                )
+                editor.putString(
+                    "user_name",
+                    "${user.name}"
                 )
                 editor.apply()
 
@@ -72,4 +82,28 @@ class FirestoreClass {
             }
     }
 
+    fun setUserDetails(activity: Activity, userHashMap: HashMap<String, Any>){
+        mFirestore.collection("users").document(getCurrentUserID())
+            .update(userHashMap)
+            .addOnSuccessListener {
+                when(activity){
+                    is EditProfileActivity->{
+                        activity.updateSuccessful()
+                    }
+
+                }
+            }
+            .addOnFailureListener{e->
+                when(activity){
+                    is EditProfileActivity->{
+                        activity.hideProgressDialog()
+                    }
+                }
+                Log.e(
+                    activity.javaClass.simpleName,
+                    "Error while updating user details",
+                    e
+                )
+            }
+    }
 }

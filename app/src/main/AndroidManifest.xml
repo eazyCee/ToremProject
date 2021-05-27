@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.torem">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/app_icon"
@@ -9,8 +10,10 @@
         android:roundIcon="@mipmap/app_icon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Torem">
-        <activity android:name=".Activity.ProfileActivity"></activity>
-        <activity android:name=".Activity.TravelPlanActivity"></activity>
+        <activity android:name=".Activity.EditProfileActivity"
+            android:theme="@style/Theme.Torem.NoActionBar"></activity>
+        <activity android:name=".Activity.ProfileActivity" />
+        <activity android:name=".Activity.TravelPlanActivity" />
         <activity
             android:name=".Activity.SpalshScreenActivity"
             android:theme="@style/SplashScreenTheme">
