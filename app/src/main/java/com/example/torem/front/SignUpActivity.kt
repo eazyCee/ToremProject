@@ -9,12 +9,13 @@ import androidx.core.content.ContextCompat
 import com.example.torem.Activity.HomeActivity
 import com.example.torem.BaseActivity
 import com.example.torem.R
+import com.example.torem.data.User
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.AuthResult
 import com.example.torem.databinding.ActivitySignUpBinding
-
+import com.example.torem.firestore.FirestoreClass
 
 
 class SignUpActivity : BaseActivity() {
@@ -70,11 +71,18 @@ class SignUpActivity : BaseActivity() {
                     .addOnCompleteListener(
                             OnCompleteListener<AuthResult>{ task ->
 
-                                hideProgressDialog()
-
                                 //if registration is successful
                                 if(task.isSuccessful){
                                     val firebaseUser: FirebaseUser = task.result!!.user!!
+
+                                    val user = User(
+                                        firebaseUser.uid,
+                                        binding.inputName.text.toString().trim{it<= ' '},
+                                        binding.inputUsername.text.toString().trim{it<=' '},
+                                        binding.inputEmail.text.toString().trim{it<= ' '}
+                                    )
+
+                                    FirestoreClass().registerUser(this, user)
 
                                     showErrorSnackBar(
                                             "You're in! Your user id is ${firebaseUser.uid}", false
@@ -93,5 +101,7 @@ class SignUpActivity : BaseActivity() {
         }
     }
 
-
+    fun userRegisComplete(){
+        hideProgressDialog()
+    }
 }
