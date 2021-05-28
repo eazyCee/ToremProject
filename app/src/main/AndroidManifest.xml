@@ -27,13 +27,9 @@
         <activity
             android:name=".Activity.DetailActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCTLtGlWgAZngkRlmTX4nfJe7dcHrCNXbU"/>
     </application>
 
 </manifest>

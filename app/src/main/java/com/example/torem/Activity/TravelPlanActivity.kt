@@ -25,9 +25,6 @@ import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.auth.User
 import com.google.gson.GsonBuilder
 import com.jaeger.library.StatusBarUtil
-import com.loopj.android.http.AsyncHttpClient
-import com.loopj.android.http.AsyncHttpResponseHandler
-import cz.msebera.android.httpclient.Header
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
@@ -58,7 +55,6 @@ class TravelPlanActivity : AppCompatActivity() {
         initPlaces()
         showData()
         etSource(idlocation1,idlocation2,mode)
-        etSource2(idlocation2,idlocation3,mode2)
     }
 
     private fun etSource(idOrigins:String,idDestination:String,mode:String) {
@@ -90,52 +86,6 @@ class TravelPlanActivity : AppCompatActivity() {
     class Distance(val text: String,val value:String)
     class Duration(val text: String,val value:String)
 
-    private fun etSource2(idOrigins:String,idDestination:String,mode:String) {
-        val url ="https://maps.googleapis.com/maps/api/distancematrix/json?origins=place_id:$idOrigins&destinations=place_id:$idDestination&mode=$mode&key=AIzaSyCTLtGlWgAZngkRlmTX4nfJe7dcHrCNXbU"
-        val client = AsyncHttpClient()
-        client.get(url,object: AsyncHttpResponseHandler(){
-            override fun onSuccess(statusCode: Int, headers: Array<out Header>?, responseBody: ByteArray
-            ) {
-                val result = String(responseBody)
-                try {
-                    val responseObjects = JSONObject(result)
-                    val items = responseObjects.getJSONObject("rows").getJSONObject("elements")
-                        .getJSONArray("distance")
-                    val items2 = responseObjects.getJSONObject("rows").getJSONObject("elements")
-                        .getJSONArray("duration")
-                    val statusx = responseObjects.getJSONObject("rows").getJSONArray("elements")
-                    for (i in 0 until items.length()) {
-                        val distance = items.getJSONObject(i)
-                        val duration = items2.getJSONObject(i)
-                        val status = statusx.getJSONObject(i)
-                        if (status.getString("status") == "OK") {
-                            binding.duration2.text = distance.getString("text")
-                            binding.distances2.text = duration.getString("text")
-                        } else {
-                            binding.duration2.text = ""
-                            binding.distances2.text = "" }
-                    }
-                } catch (e: Exception) {
-                    Log.d("Exception", e.message.toString())
-                }
-            }
-            override fun onFailure(
-                statusCode: Int,
-                headers: Array<Header>?,
-                responseBody: ByteArray?,
-                error: Throwable
-            ) {
-                Log.d("onFailure", error.message.toString())
-                val errorMessage = when (statusCode) {
-                    401 -> "$statusCode : Bad Request"
-                    403 -> "$statusCode : Forbidden"
-                    404 -> "$statusCode : Not Found"
-                    else -> "$statusCode : ${error.message}"
-                }
-                Log.d("ListUserActivity", errorMessage)
-            }
-        })
-    }
 
     private fun initPlaces(){
         val apiKey="AIzaSyCTLtGlWgAZngkRlmTX4nfJe7dcHrCNXbU"

@@ -54,7 +54,7 @@ class Add : Fragment() {
     private var addresses3:String ="String"
     private var location2 :String ="String"
     private var location3 :String ="String"
-    private var cover: String="String"
+    private var cover: String=""
     private var nameTp:String ="Sring"
     lateinit var filePath: Uri
     private var uri: Uri = Uri.EMPTY
@@ -72,7 +72,7 @@ class Add : Fragment() {
         autoPlaces2()
         autoPlaces3()
         binding.imageButton.setOnClickListener{
-            var intent =Intent()
+            val intent =Intent()
             intent.type = "image/*"
             intent.action = Intent.ACTION_GET_CONTENT
             startActivityForResult(Intent.createChooser(intent,"Choose Picture"),111)
@@ -88,7 +88,6 @@ class Add : Fragment() {
 
         }
         binding.createButton.setOnClickListener{
-            binding.save.text = "Please Wait"
             val nameTP = binding.editTitle.text.toString()
             if (nameTP.isEmpty()){
                 binding.editTitle.error = "Please Enter a title!"
@@ -115,7 +114,7 @@ class Add : Fragment() {
             imageRef.putFile(uri)
             imageRef.downloadUrl.addOnSuccessListener {
                 cover=it.toString()
-                Log.d("add", "uploadFile:$cover ")
+                Log.d("add", "uploadFile:$cover")
             }
         }
     }
@@ -127,13 +126,12 @@ class Add : Fragment() {
         travelPlan["secondLocation"] = SecondLocation
         travelPlan["thirdLocation"] = Thirdlocation
         travelPlan["cover"] = Cover
-        travelPlan["descriptionTP"] = Description
         travelPlan["nameTP"] = Title
+        travelPlan["descriptionTP"] = Description
         travelPlan["mode1"] = Mode
         travelPlan["mode2"] = Mode2
 
-
-        db.collection("TravelPlans").document(nameTp)
+        db.collection("TravelPlans").document(Title)
             .set(travelPlan)
             .addOnSuccessListener {
                 if(Title.isEmpty()){
@@ -147,7 +145,7 @@ class Add : Fragment() {
                 binding.done.visibility = View.VISIBLE
 
                 val intent = Intent(context, TravelPlanActivity::class.java)
-                intent.putExtra("documentID", nameTp)
+                intent.putExtra("documentID",Title)
                 context?.startActivity(intent)}
             }
             .addOnFailureListener {
