@@ -50,11 +50,9 @@ class Home : Fragment() {
         binding.rvTravelPlan.layoutManager = LinearLayoutManager(context)
         showRecyclerList()
         return binding.root
+
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-    }
 
     private fun showRecyclerList() {
         val query: Query = tsCollection

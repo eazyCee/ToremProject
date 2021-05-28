@@ -1,7 +1,10 @@
 package com.example.torem.Activity
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.WindowManager
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import com.example.torem.R
@@ -14,6 +17,7 @@ import com.google.android.libraries.places.api.net.FetchPlaceRequest
 import com.google.android.libraries.places.api.net.PlacesClient
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.protobuf.ApiProto
+import com.jaeger.library.StatusBarUtil
 
 
 class DetailActivity:AppCompatActivity() {
@@ -23,9 +27,12 @@ class DetailActivity:AppCompatActivity() {
     override fun onCreate(savedInstanceState : Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
-        supportActionBar?.hide()
+        StatusBarUtil.setTransparent(this)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         binding.backButton.setOnClickListener {
             finish()
         }
@@ -75,4 +82,5 @@ class DetailActivity:AppCompatActivity() {
                     }
             }
     }
+
 }

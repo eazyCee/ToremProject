@@ -1,9 +1,395 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.TravelPlanActivity">
+    tools:context=".fragment.addfragment.Add"
+    android:scrollbars="none"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:src="@drawable/bromo"
+                android:scaleType="centerCrop"/>
+            <ImageView
+                android:id="@+id/photo_cover"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                tools:src="@drawable/tigawarna"
+                android:scaleType="centerCrop"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:src="@color/transparant"
+                android:scaleType="centerCrop"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/image_selector" />
+
+                        <ImageButton
+                            android:id="@+id/back_button"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="4dp"
+                            android:background="@color/transparants"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_baseline_arrow_back_ios_24" />
+                    </FrameLayout>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/edit_button"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center|end"
+                        android:layout_marginEnd="20dp"
+                        app:cardBackgroundColor="@color/transparant"
+                        app:cardCornerRadius="50dp"
+                        app:cardElevation="0dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/montserrat_semi_bold"
+                            android:text="Edit"
+                            android:textColor="@color/white" />
+
+                    </androidx.cardview.widget.CardView>
+                </FrameLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="900dp"
+            android:layout_marginTop="300dp"
+            app:cardCornerRadius="28dp"
+            android:fadingEdgeLength="10dp"
+            android:elevation="0dp"
+            android:outlineProvider="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|top"
+                android:orientation="vertical"
+                android:layout_marginTop="30dp">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginEnd="35dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:maxLength="15"
+                    android:textColor="@color/grey_dark"
+                    android:textSize="25sp"
+                    tools:text="The Air Bender" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="15dp">
+                    <RatingBar
+                        android:layout_width="wrap_content"
+                        android:layout_height="24dp"
+                        android:layout_marginStart="35dp"
+                        android:rating="3.3"
+                        android:progressDrawable="@drawable/custom" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="(4747)"
+                        android:layout_gravity="center"
+                        android:textColor="#A0A4A8"/>
+
+                </LinearLayout>
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="350dp"
+                    android:layout_height="45dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/grey_dark"
+                    app:strokeWidth="0.5dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="20dp"
+                            android:src="@drawable/ic_baseline_person_outline_24"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:backgroundTint="@color/transparants"
+                            android:fontFamily="@font/montserrat_semi_bold"
+                            android:maxLength="50"
+                            android:layout_marginStart="5dp"
+                            android:layout_gravity="center"
+                            android:text="Creator"
+                            android:textColor="#A0A4A8"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/creator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="180dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_gravity="center"
+                            android:backgroundTint="@color/transparants"
+                            android:fontFamily="@font/montserrat_semi_bold"
+                            android:textColor="@color/grey_dark"
+                            android:textSize="15sp"
+                            tools:text="Maxi" />
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/edit_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="35dp"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:maxLength="50"
+                    android:textColor="#A0A4A8"
+                    android:textSize="15sp"
+                    tools:text="Description is a must on my life" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="35dp"
+                    android:text="Plan"
+                    android:textSize="25sp"
+                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:textColor="@color/grey_dark"/>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="350dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="30dp"
+                    android:elevation="1dp"
+                    app:cardCornerRadius="15dp">
+
+                    <ImageView
+                        android:id="@+id/photo1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                        tools:src="@drawable/tigawarna" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                        tools:src="@color/transparant" />
+
+                    <TextView
+                        android:id="@+id/location1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        android:textColor="@color/white"
+                        android:textSize="17sp"
+                        tools:text="Tiga Warna" />
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="30dp"
+                    android:paddingBottom="30dp"
+                    android:layout_gravity="center"
+                   >
+
+                    <TextView
+                        android:id="@+id/distances1"
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:paddingTop="3dp"
+                        android:paddingEnd="10dp"
+                        android:textAlignment="viewEnd"
+                        android:textSize="17sp"
+                        tools:text="20 km" />
+
+                    <ImageView
+                        android:id="@+id/trans1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:src="@drawable/unwalk"
+                        app:tint="@color/grey_dark" />
+
+                    <TextView
+                        android:id="@+id/duration1"
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:paddingStart="10dp"
+                        android:paddingTop="3dp"
+                        android:textAlignment="textStart"
+                        android:textSize="17sp"
+                        tools:text="80 minutes" />
+                </LinearLayout>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="350dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:elevation="1dp"
+                    app:cardCornerRadius="15dp">
+
+                    <ImageView
+                        android:id="@+id/photo2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                        tools:src="@drawable/tigawarna" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                        tools:src="@color/transparant" />
+
+                    <TextView
+                        android:id="@+id/location2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        android:textColor="@color/white"
+                        android:textSize="17sp"
+                        tools:text="Tiga Warna" />
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingTop="30dp"
+                    android:paddingBottom="30dp">
+
+                    <TextView
+                        android:id="@+id/distances2"
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:paddingTop="3dp"
+                        android:paddingEnd="10dp"
+                        android:textAlignment="viewEnd"
+                        android:textSize="17sp"
+                        tools:text="20 km" />
+
+                    <ImageView
+                        android:id="@+id/trans2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:src="@drawable/unwalk"
+                        app:tint="@color/grey_dark" />
+
+                    <TextView
+                        android:id="@+id/duration2"
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:paddingStart="10dp"
+                        android:paddingTop="3dp"
+                        android:textAlignment="textStart"
+                        android:textSize="17sp"
+                        tools:text="80 minutes" />
+                </LinearLayout>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="350dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:elevation="1dp"
+                    app:cardCornerRadius="15dp">
+
+                    <ImageView
+                        android:id="@+id/photo3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                        tools:src="@drawable/tigawarna" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                        tools:src="@color/transparant" />
+
+                    <TextView
+                        android:id="@+id/location3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        android:textColor="@color/white"
+                        android:textSize="17sp"
+                        tools:text="Tiga Warna" />
+
+
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </FrameLayout>
+</ScrollView>
+

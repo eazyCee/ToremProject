@@ -6,7 +6,6 @@
     android:orientation="vertical"
     tools:context=".Activity.DetailActivity"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:fitsSystemWindows="true"
     android:scrollbars="none">
     <FrameLayout
         android:layout_width="match_parent"
@@ -18,16 +17,27 @@
             tools:src="@drawable/bromo"
             android:scaleType="centerCrop"
             tools:ignore="ContentDescription" />
-
-        <ImageButton
-            android:id="@+id/back_button"
+        <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="23dp"
-            android:background="@color/transparants"
-            android:src="@drawable/lingkaran" />
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="10dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/image_selector"/>
 
+            <ImageButton
+                android:id="@+id/back_button"
+                android:layout_marginStart="4dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"
+                android:background="@color/transparants"
+                android:src="@drawable/ic_baseline_arrow_back_ios_24" />
+
+        </FrameLayout>
         <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
