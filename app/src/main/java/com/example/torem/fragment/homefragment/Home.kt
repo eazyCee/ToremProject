@@ -1,5 +1,6 @@
 package com.example.torem.fragment.homefragment
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -23,6 +24,7 @@ import com.example.torem.adapter.PlacesAdapter
 import com.example.torem.data.Places
 import com.example.torem.databinding.HomeFragmentBinding
 import com.example.torem.databinding.ItemTravelSpotBinding
+import com.example.torem.util.Utils
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -37,6 +39,9 @@ class Home : Fragment() {
     private lateinit var bindingSpot: ItemTravelSpotBinding
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var adapter: PlacesAdapter
+    private val sharedPreferences = this.requireActivity().getSharedPreferences(Utils.TOREM_PREFS,
+        Context.MODE_PRIVATE)
+
     private val db = FirebaseFirestore.getInstance()
     private val tsCollection: CollectionReference = db.collection("TravelsPlaces")
     var placesAdapter : PlacesAdapter? = null
@@ -46,7 +51,9 @@ class Home : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val username = sharedPreferences.getString(Utils.CURRENT_USERNAME, "")!!
         binding = HomeFragmentBinding.inflate(layoutInflater, container, false)
+        binding.userName.text = username
         binding.rvTravelPlan.layoutManager = LinearLayoutManager(context)
         showRecyclerList()
         return binding.root
