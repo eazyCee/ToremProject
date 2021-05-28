@@ -39,8 +39,6 @@ class Home : Fragment() {
     private lateinit var bindingSpot: ItemTravelSpotBinding
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var adapter: PlacesAdapter
-    private val sharedPreferences = this.requireActivity().getSharedPreferences(Utils.TOREM_PREFS,
-        Context.MODE_PRIVATE)
 
     private val db = FirebaseFirestore.getInstance()
     private val tsCollection: CollectionReference = db.collection("TravelsPlaces")
@@ -51,6 +49,8 @@ class Home : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val sharedPreferences = this.requireActivity().getSharedPreferences(Utils.TOREM_PREFS,
+            Context.MODE_PRIVATE)
         val username = sharedPreferences.getString(Utils.CURRENT_USERNAME, "")!!
         binding = HomeFragmentBinding.inflate(layoutInflater, container, false)
         binding.userName.text = username
