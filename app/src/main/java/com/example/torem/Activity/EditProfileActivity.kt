@@ -26,6 +26,7 @@ import java.io.IOException
 class EditProfileActivity : BaseActivity(), View.OnClickListener{
     private lateinit var binding: ActivityEditProfileBinding
     private lateinit var userDetails: User
+    private var selectedImageUri: Uri? = null
     private val sharedPreferences = this.getSharedPreferences(Utils.TOREM_PREFS,
         Context.MODE_PRIVATE)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,6 +74,10 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener{
                     finish()
                 }
                 R.id.signUp->{
+                    showProgressDialog(resources.getString(R.string.please_wait))
+
+                    FirestoreClass().uploadImageToCloud(this,selectedImageUri)
+
                     val userHashmap = HashMap<String, Any>()
 
                     val desc = binding.inputDescription.text.toString()
@@ -133,6 +138,7 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener{
 
     private fun loadPicture(imageUri: Uri, imageView: ImageView){
         try{
+            selectedImageUri = imageUri
             Glide.with(this)
                 .load(Uri.parse(imageUri.toString()))
                 .centerCrop()
@@ -141,5 +147,14 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener{
         } catch(e: IOException){
             e.printStackTrace()
         }
+    }
+
+    fun imgUploadSuccess(url: String){
+        hideProgressDialog()
+        Toast.makeText(
+            this,
+            "SUCCESS! IMG URL : $url",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 }

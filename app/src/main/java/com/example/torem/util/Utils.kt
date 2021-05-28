@@ -2,7 +2,9 @@ package com.example.torem.util
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.provider.MediaStore
+import android.webkit.MimeTypeMap
 
 object Utils {
     const val TOREM_PREFS: String = "ToremPrefs"
@@ -17,5 +19,10 @@ object Utils {
             MediaStore.Images.Media.EXTERNAL_CONTENT_URI
         )
         activity.startActivityForResult(gallery, PICK_IMAGE_CODE)
+    }
+
+    fun getFileExtension(activity: Activity, uri: Uri?):String?{
+        return MimeTypeMap.getSingleton()
+            .getExtensionFromMimeType(activity.contentResolver.getType(uri!!))
     }
 }

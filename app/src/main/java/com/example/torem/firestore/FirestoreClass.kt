@@ -4,6 +4,7 @@ package com.example.torem.firestore
 import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
+import android.net.Uri
 import android.util.Log
 import com.example.torem.Activity.EditProfileActivity
 import com.example.torem.data.User
@@ -13,6 +14,8 @@ import com.example.torem.util.Utils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 class FirestoreClass {
     private val mFirestore = FirebaseFirestore.getInstance()
@@ -102,6 +105,43 @@ class FirestoreClass {
                 Log.e(
                     activity.javaClass.simpleName,
                     "Error while updating user details",
+                    e
+                )
+            }
+    }
+
+    fun uploadImageToCloud(activity: Activity,imageUri: Uri?){
+        val sRef: StorageReference = FirebaseStorage.getInstance().reference.child("avatar/"+
+            "User_Image" + System.currentTimeMillis()+"."+Utils.getFileExtension(activity, imageUri)
+
+        )
+
+        sRef.putFile(imageUri!!).addOnSuccessListener{taskSnapshot->
+            Log.e(
+                "Firebase image url",
+                taskSnapshot.metadata!!.reference!!.downloadUrl.toString()
+            )
+
+            taskSnapshot.metadata!!.reference!!.downloadUrl
+                .addOnSuccessListener { uri->
+                    Log.e("Downloadable img url", uri.toString())
+                    when(activity){
+                        is EditProfileActivity->{
+                            activity.imgUploadSuccess(uri.toString())
+                        }
+                    }
+                }
+        }
+            .addOnFailureListener{e->
+                when(activity){
+                    is EditProfileActivity->{
+                        activity.hideProgressDialog()
+                    }
+                }
+
+                Log.e(
+                    activity.javaClass.simpleName,
+                    e.message,
                     e
                 )
             }
