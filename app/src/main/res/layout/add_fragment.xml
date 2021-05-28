@@ -67,10 +67,10 @@
                     android:layout_marginStart="35dp"
                     android:layout_marginEnd="35dp"
                     android:backgroundTint="@color/transparants"
-                    android:fontFamily="@font/montserrat_semi_bold"
+                    android:fontFamily="@font/montserrat_regular"
                     android:textSize="15sp"
                     android:hint="type description"
-                    android:maxLength="50"
+                    android:maxLength="100"
                     android:textColor="@color/white"
                     android:textColorHint="#C9FFFFFF" />
 
@@ -81,7 +81,7 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="500dp"
-            android:layout_marginTop="220dp"
+            android:layout_marginTop="260dp"
             app:cardCornerRadius="28dp"
             android:fadingEdgeLength="10dp"
             android:elevation="0dp"

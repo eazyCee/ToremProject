@@ -1,32 +1,21 @@
 package com.example.torem.Activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
-import android.webkit.WebStorage
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.torem.R
-import com.example.torem.adapter.PlacesAdapter
-import com.example.torem.data.Places
-import com.example.torem.databinding.ActivityDetailBinding
 import com.example.torem.databinding.ActivityTravelPlanBinding
-import com.example.torem.databinding.AddFragmentBinding
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.api.net.FetchPhotoRequest
 import com.google.android.libraries.places.api.net.FetchPlaceRequest
 import com.google.android.libraries.places.api.net.PlacesClient
-import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
-import com.google.firebase.firestore.auth.User
 import com.google.gson.GsonBuilder
 import com.jaeger.library.StatusBarUtil
 import okhttp3.*
-import org.json.JSONObject
 import java.io.IOException
 
 class TravelPlanActivity : AppCompatActivity() {
@@ -54,7 +43,6 @@ class TravelPlanActivity : AppCompatActivity() {
         }
         initPlaces()
         showData()
-        etSource(idlocation1,idlocation2,mode)
     }
 
     private fun etSource(idOrigins:String,idDestination:String,mode:String) {
@@ -65,14 +53,14 @@ class TravelPlanActivity : AppCompatActivity() {
             override fun onResponse(call: Call, response: Response) {
                 val body =response.body?.string()
                 println(body)
+            if (body?.contains("distance")==true && body.contains("duration")){
                 val gson = GsonBuilder().create()
                 val rows = gson.fromJson(body,Rows::class.java)
-                if (rows.rows.elements.status == "OK") {
-                    binding.distances1.text = rows.rows.elements.distance.text
-                    binding.distances1.text = rows.rows.elements.duration.text
+                    binding.distances1.text = rows.rows[0].elements[0].distance.text
+                    binding.duration1.text = rows.rows[0].elements[0].duration.text
                 } else{
                     binding.distances1.text = "not found"
-                    binding.distances1.text = "not found"
+                    binding.duration1.text = "not found"
                 }
             }
             override fun onFailure(call: Call, e: IOException) {
@@ -80,8 +68,31 @@ class TravelPlanActivity : AppCompatActivity() {
             }
         })
     }
-    class Rows(val rows:Row)
-    class Row(val elements:Elements)
+    private fun etSource2(idOrigins:String,idDestination:String,mode:String) {
+        val url ="https://maps.googleapis.com/maps/api/distancematrix/json?origins=place_id:$idOrigins&destinations=place_id:$idDestination&mode=$mode&key=AIzaSyCTLtGlWgAZngkRlmTX4nfJe7dcHrCNXbU"
+        val request = Request.Builder().url(url).build()
+        val client=OkHttpClient()
+        client.newCall(request).enqueue(object : Callback {
+            override fun onResponse(call: Call, response: Response) {
+                val body =response.body?.string()
+                println(body)
+                if (body?.contains("distance")==true && body.contains("duration")){
+                    val gson = GsonBuilder().create()
+                    val rows = gson.fromJson(body,Rows::class.java)
+                    binding.distances2.text = rows.rows[0].elements[0].distance.text
+                    binding.duration2.text = rows.rows[0].elements[0].duration.text
+                } else{
+                    binding.distances2.text = "not found"
+                    binding.duration2.text = "not found"
+                }
+            }
+            override fun onFailure(call: Call, e: IOException) {
+                Log.d("TP", "onFailure: failed to executed request")
+            }
+        })
+    }
+    class Rows(val rows:List<Row>)
+    class Row(val elements:List<Elements>)
     class Elements(val distance: Distance,val duration:Duration,val status:String)
     class Distance(val text: String,val value:String)
     class Duration(val text: String,val value:String)
@@ -113,6 +124,25 @@ class TravelPlanActivity : AppCompatActivity() {
                     mode = it.getString("mode1").toString()
                     mode2 = it.getString("mode2").toString()
 
+                    if (mode=="bicycling"){
+                        binding.trans1.setImageResource(R.drawable.unmotor)
+                    }
+                    if (mode=="driving"){
+                        binding.trans1.setImageResource(R.drawable.unmobil)
+                    }
+                    if (mode=="walking"){
+                        binding.trans1.setImageResource(R.drawable.unwalk)
+                    }
+                    if (mode2=="bicycling"){
+                        binding.trans2.setImageResource(R.drawable.unmotor)
+                    }
+                    if (mode2=="driving"){
+                        binding.trans2.setImageResource(R.drawable.unmobil)
+                    }
+                    if (mode2=="walking"){
+                        binding.trans2.setImageResource(R.drawable.unwalk)
+                    }
+
                     Glide.with(this)
                         .load(cover)
                         .into(binding.photoCover)
@@ -121,6 +151,37 @@ class TravelPlanActivity : AppCompatActivity() {
                     getPlaceCover2(idlocation2)
                     getPlaceCover3(idlocation3)
 
+                    Log.d("TP", "onCreate: $idlocation1")
+                    if(idlocation1!="" && idlocation2!="")
+                        etSource(idlocation1,idlocation2,mode)
+
+                    if(idlocation2!="" && idlocation3!="")
+                        etSource2(idlocation2,idlocation3,mode2)
+
+                    binding.editButton.setOnClickListener{
+                        db.collection("TravelPlans").document(id)
+                            .delete()
+                            .addOnSuccessListener { Log.d("TP", "DocumentSnapshot successfully deleted!") }
+                            .addOnFailureListener { e -> Log.w("TP", "Error deleting document", e) }
+                            finish()
+
+                    }
+
+                    binding.panel1.setOnClickListener {
+                        val intent = Intent(this, DetailActivity::class.java)
+                        intent.putExtra("id", idlocation1)
+                        startActivity(intent)
+                    }
+                    binding.panel2.setOnClickListener {
+                        val intent = Intent(this, DetailActivity::class.java)
+                        intent.putExtra("id", idlocation2)
+                        startActivity(intent)
+                    }
+                    binding.panel3.setOnClickListener {
+                        val intent = Intent(this, DetailActivity::class.java)
+                        intent.putExtra("id", idlocation3)
+                        startActivity(intent)
+                    }
                 }
         }
     }

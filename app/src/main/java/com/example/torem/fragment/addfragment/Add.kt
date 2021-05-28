@@ -3,6 +3,7 @@ package com.example.torem.fragment.addfragment
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.res.ColorStateList
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -41,6 +42,7 @@ import com.google.android.libraries.places.widget.listener.PlaceSelectionListene
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.installations.Utils
 import com.google.firebase.storage.FirebaseStorage
 
 class Add : Fragment() {
@@ -92,17 +94,16 @@ class Add : Fragment() {
             if (nameTP.isEmpty()){
                 binding.editTitle.error = "Please Enter a title!"
             }
-            if (binding.photo.drawable!=null){
-                uploadFile()
-            }
+            uploadFile()
+            val sharedPreferences=this.requireActivity().getSharedPreferences("A",Context.MODE_PRIVATE)
             val descriptionTP = binding.editDescription.text.toString()
             val firstLocation = location
             val secondLocation = location2
             val thirdLocation = location3
-            val cover = cover
+            val covers = sharedPreferences.getString("avatar","")!!
             val mode1 = mode
             val mode2 = mode2
-            saveFireStore(firstLocation,secondLocation,thirdLocation,cover,nameTP,descriptionTP,mode1,mode2)
+            saveFireStore(firstLocation,secondLocation,thirdLocation,covers,nameTP,descriptionTP,mode1,mode2)
         }
         return binding.root
     }
@@ -113,8 +114,16 @@ class Add : Fragment() {
             val imageRef = FirebaseStorage.getInstance().reference.child("cover/$nameTp")
             imageRef.putFile(uri)
             imageRef.downloadUrl.addOnSuccessListener {
-                cover=it.toString()
-                Log.d("add", "uploadFile:$cover")
+                val sharedPreferences = requireActivity().getSharedPreferences(
+                    "A",
+                    Context.MODE_PRIVATE
+                )
+                val editor:SharedPreferences.Editor =sharedPreferences.edit()
+                editor.putString(
+                    "avatar",
+                    "${it.toString()}"
+                )
+                editor.apply()
             }
         }
     }
