@@ -41,7 +41,7 @@ class Home : Fragment() {
     private lateinit var adapter: PlacesAdapter
 
     private val db = FirebaseFirestore.getInstance()
-    private val tsCollection: CollectionReference = db.collection("TravelsPlaces")
+    private val tsCollection = db.collection("TravelsPlaces").limit(5)
     var placesAdapter : PlacesAdapter? = null
 
     override fun onCreateView(

@@ -3,11 +3,166 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.searchfragment.Search">
-
-    <TextView
+    <fragment
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:background="@color/white"/>
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_gravity="bottom"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="28dp"
+        app:cardElevation="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="40dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/grey_dark"
+                android:text="Find nearby locations"
+                android:fontFamily="@font/montserrat_bold"
+                android:textSize="18sp"
+                android:layout_marginStart="23dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp">
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/amusement"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp"
+                    android:layout_marginStart="23dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/grey_light"
+                    app:strokeWidth="1dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardBackgroundColor="@color/card_selector">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="amusement park"
+                        android:padding="7dp"
+                        android:textColor="@color/blue_main"
+                        android:fontFamily="@font/montserrat_semi_bold"/>
+
+                </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/campground"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp"
+                    android:layout_marginStart="10dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/grey_light"
+                    app:strokeWidth="1dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardBackgroundColor="@color/card_selector"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="campground"
+                        android:padding="7dp"
+                        android:textColor="@color/blue_main"
+                        android:fontFamily="@font/montserrat_semi_bold"/>
+
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp">
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/museum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp"
+                    android:layout_marginStart="23dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/grey_light"
+                    app:strokeWidth="1dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardBackgroundColor="@color/card_selector"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="museum"
+                        android:padding="7dp"
+                        android:textColor="@color/blue_main"
+                        android:fontFamily="@font/montserrat_semi_bold"/>
+
+                </com.google.android.material.card.MaterialCardView>
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/tourist_attraction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp"
+                    android:layout_marginStart="10dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/grey_light"
+                    app:strokeWidth="1dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardBackgroundColor="@color/card_selector"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="tourist attraction"
+                        android:padding="7dp"
+                        android:textColor="@color/blue_main"
+                        android:fontFamily="@font/montserrat_semi_bold"/>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/park"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp"
+                    android:layout_marginStart="10dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardBackgroundColor="@color/card_selector"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/grey_light"
+                    app:strokeWidth="1dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="park"
+                        android:padding="7dp"
+                        android:textColor="@color/blue_main"
+                        android:fontFamily="@font/montserrat_semi_bold"/>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
 
 </FrameLayout>

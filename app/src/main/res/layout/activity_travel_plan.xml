@@ -234,7 +234,7 @@
                         android:layout_gravity="center"
                         android:fontFamily="@font/montserrat_semi_bold"
                         android:textColor="@color/white"
-                        android:textSize="17sp"
+                        android:textSize="14sp"
                         tools:text="Tiga Warna" />
 
 
@@ -308,7 +308,7 @@
                         android:layout_gravity="center"
                         android:fontFamily="@font/montserrat_semi_bold"
                         android:textColor="@color/white"
-                        android:textSize="17sp"
+                        android:textSize="14sp"
                         tools:text="Tiga Warna" />
 
 
@@ -381,7 +381,7 @@
                         android:layout_gravity="center"
                         android:fontFamily="@font/montserrat_semi_bold"
                         android:textColor="@color/white"
-                        android:textSize="17sp"
+                        android:textSize="14sp"
                         tools:text="Tiga Warna" />
 
 

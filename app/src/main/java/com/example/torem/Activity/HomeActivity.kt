@@ -19,7 +19,6 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_home)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         actionBar?.hide()
-        refreshApp()
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -33,13 +32,5 @@ class HomeActivity : AppCompatActivity() {
         ).build()
         navView.setupWithNavController(navController)
 
-    }
-
-    private fun refreshApp() {
-        activityHomeBinding = ActivityHomeBinding.inflate(layoutInflater)
-        activityHomeBinding.refreshLayout.setOnRefreshListener {
-            Toast.makeText(this, "Page refreshed", Toast.LENGTH_SHORT).show()
-            activityHomeBinding.refreshLayout.isRefreshing = false
-        }
     }
 }
