@@ -7,7 +7,6 @@ class Results {
     var name:String?=null
     var geometry:Geometry?=null
     var photos:Array<Photos>?=null
-    var id:String?=null
     var place_id:String?=null
     var price_level:Int =0
     var rating:Double=0.0

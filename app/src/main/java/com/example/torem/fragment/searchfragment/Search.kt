@@ -148,14 +148,7 @@ class Search : Fragment() {
                             val lat = googlePlaces.geometry!!.location!!.lat
                             val lng = googlePlaces.geometry!!.location!!.lng
                             val placeName = googlePlaces.name
-                            val id =googlePlaces.place_id.toString()
                             val latLng = LatLng(lat,lng)
-
-                            mMap!!.setOnInfoWindowClickListener() {
-                                val intent = Intent(requireContext(), DetailActivity::class.java)
-                                intent.putExtra("id", id)
-                                startActivity(intent)
-                            }
 
 
                             markerOptions.position(latLng)
