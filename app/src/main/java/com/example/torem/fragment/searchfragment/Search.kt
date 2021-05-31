@@ -2,12 +2,8 @@ package com.example.torem.fragment.searchfragment
 
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.icu.text.CaseMap
 import android.location.Location
 import android.os.Build
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.os.Looper
 import android.util.Log
@@ -16,14 +12,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.torem.Activity.DetailActivity
-import com.example.torem.Activity.TravelPlanActivity
 import com.example.torem.R
 import com.example.torem.Remote.IGoogleAPIService
-import com.example.torem.databinding.ActivityTravelPlanBinding
+import com.example.torem.adapter.infoWindowsAdapter
 import com.example.torem.databinding.SearchFragmentBinding
 import com.example.torem.util.MyPlaces
 import com.example.torem.util.common
@@ -37,6 +32,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+@Suppress("RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class Search : Fragment() {
 
 
@@ -148,13 +144,24 @@ class Search : Fragment() {
                             val lat = googlePlaces.geometry!!.location!!.lat
                             val lng = googlePlaces.geometry!!.location!!.lng
                             val placeName = googlePlaces.name
+                            val placeAdd = googlePlaces.vicinity
+                            val id = googlePlaces.place_id
                             val latLng = LatLng(lat,lng)
 
 
                             markerOptions.position(latLng)
                             markerOptions.title(placeName)
+                            markerOptions.snippet(id)
                             markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+
+
                             mMap!!.addMarker(markerOptions)
+                            mMap!!.setOnInfoWindowClickListener {
+                                    val intent = Intent(requireContext(), DetailActivity::class.java)
+                                    intent.putExtra("id",it.snippet.toString())
+                                    startActivity(intent)
+                            }
+                            mMap!!.setInfoWindowAdapter(infoWindowsAdapter(requireContext()))
                             mMap!!.moveCamera(CameraUpdateFactory.newLatLng(latLng))
                             mMap!!.animateCamera(CameraUpdateFactory.zoomTo(15f))
                         }

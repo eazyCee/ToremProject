@@ -30,6 +30,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.torem.Activity.TravelPlanActivity
 import com.example.torem.R
 import com.example.torem.databinding.AddFragmentBinding
+import com.example.torem.firestore.FirestoreClass
 import com.google.android.gms.common.api.Status
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.OnSuccessListener
@@ -94,16 +95,21 @@ class Add : Fragment() {
             if (nameTP.isEmpty()){
                 binding.editTitle.error = "Please Enter a title!"
             }
-            uploadFile()
-            val sharedPreferences=this.requireActivity().getSharedPreferences("A",Context.MODE_PRIVATE)
+
+            val userID = FirestoreClass().getCurrentUserID()
             val descriptionTP = binding.editDescription.text.toString()
             val firstLocation = location
             val secondLocation = location2
             val thirdLocation = location3
-            val covers = sharedPreferences.getString("avatar","")!!
+            val covers =
+                if(binding.photo.drawable!= null) {
+                uploadFile()
+                val sharedPreferences=this.requireActivity().getSharedPreferences("A",Context.MODE_PRIVATE)
+                sharedPreferences.getString("avatar","")!!
+            } else{cover}
             val mode1 = mode
             val mode2 = mode2
-            saveFireStore(firstLocation,secondLocation,thirdLocation,covers,nameTP,descriptionTP,mode1,mode2)
+            saveFireStore(firstLocation,secondLocation,thirdLocation,covers,nameTP,descriptionTP,mode1,mode2,userID)
         }
         return binding.root
     }
@@ -128,7 +134,7 @@ class Add : Fragment() {
         }
     }
 
-    fun saveFireStore(FirstLocation:String,SecondLocation:String,Thirdlocation:String,Cover:String,Title:String,Description:String,Mode:String,Mode2:String) {
+    fun saveFireStore(FirstLocation:String,SecondLocation:String,Thirdlocation:String,Cover:String,Title:String,Description:String,Mode:String,Mode2:String,UserID:String) {
         val db = FirebaseFirestore.getInstance()
         val travelPlan: MutableMap<String, Any> = HashMap()
         travelPlan["firstLocation"] = FirstLocation
@@ -139,6 +145,7 @@ class Add : Fragment() {
         travelPlan["descriptionTP"] = Description
         travelPlan["mode1"] = Mode
         travelPlan["mode2"] = Mode2
+        travelPlan["userID"] = UserID
 
         db.collection("TravelPlans").document(Title)
             .set(travelPlan)
