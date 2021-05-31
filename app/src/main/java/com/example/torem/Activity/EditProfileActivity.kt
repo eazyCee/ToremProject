@@ -27,9 +27,10 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener{
     private lateinit var binding: ActivityEditProfileBinding
     private lateinit var userDetails: User
     private var selectedImageUri: Uri? = null
-    private val sharedPreferences = this.getSharedPreferences(Utils.TOREM_PREFS,
-        Context.MODE_PRIVATE)
+    private var userProfileUrl: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
+        val sharedPreferences = this.getSharedPreferences(Utils.TOREM_PREFS,
+                Context.MODE_PRIVATE)
         binding = ActivityEditProfileBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -38,13 +39,15 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener{
             userDetails = intent.getParcelableExtra(Utils.EXTRA_DETAILS)!!
         }
 
+        getUserDetails()
+
         binding.inputName.isEnabled = true
-        binding.inputName.setText(sharedPreferences.getString("user_name", ""))
+        binding.inputName.setText(userDetails.name)
 
         binding.inputUsername.isEnabled = true
-        binding.inputUsername.setText(sharedPreferences.getString(Utils.CURRENT_USERNAME, ""))
+        binding.inputUsername.setText(userDetails.username)
 
-        binding.inputDescription.setText(sharedPreferences.getString("user_description", ""))
+        binding.inputDescription.setText(userDetails.desc)
 
         binding.picture.setOnClickListener(this)
         binding.signupButton.setOnClickListener(this)
@@ -76,19 +79,11 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener{
                 R.id.signUp->{
                     showProgressDialog(resources.getString(R.string.please_wait))
 
-                    FirestoreClass().uploadImageToCloud(this,selectedImageUri)
-
-                    val userHashmap = HashMap<String, Any>()
-
-                    val desc = binding.inputDescription.text.toString()
-
-                    if(desc.isNotEmpty()){
-                        userHashmap[Utils.DESC] = desc
+                    if(userProfileUrl!=null){
+                        FirestoreClass().uploadImageToCloud(this,selectedImageUri)
+                    } else{
+                        updateProfileData()
                     }
-
-                    showProgressDialog(resources.getString(R.string.please_wait))
-
-                    FirestoreClass().setUserDetails(this, userHashmap)
                 }
             }
         }
@@ -104,6 +99,48 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener{
         ).show()
         startActivity(Intent(this, HomeActivity::class.java))
         finish()
+    }
+
+    private fun getUserDetails(){
+        showProgressDialog(resources.getString(R.string.please_wait))
+        FirestoreClass().getUserDetails(this)
+    }
+
+    fun userDetailsSuccess(user: User){
+        userDetails = user
+
+        hideProgressDialog()
+
+        Utils.loadPicture(user.image, binding.picture,this)
+    }
+
+    private fun updateProfileData(){
+        val userHashmap = HashMap<String, Any>()
+
+        val desc = binding.inputDescription.text.toString()
+        val name = binding.inputName.text.toString()
+        val username = binding.inputUsername.text.toString()
+
+        if(desc.isNotEmpty()){
+            userHashmap[Utils.DESC] = desc
+        }
+
+        if(name.isNotEmpty()){
+            userHashmap[Utils.NAME] = name
+        }
+
+        if(username.isNotEmpty()){
+            userHashmap[Utils.USERNAME] = username
+        }
+
+
+        if(userProfileUrl.isNotEmpty()){
+            userHashmap[Utils.IMAGE] = userProfileUrl
+        }
+
+        userHashmap[Utils.PROFILE_COMPLETE] = true
+
+        FirestoreClass().setUserDetails(this, userHashmap)
     }
 
     override fun onRequestPermissionsResult(
@@ -137,24 +174,19 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener{
     }
 
     private fun loadPicture(imageUri: Uri, imageView: ImageView){
-        try{
             selectedImageUri = imageUri
-            Glide.with(this)
-                .load(Uri.parse(imageUri.toString()))
-                .centerCrop()
-                .placeholder(R.drawable.bromo)
-                .into(imageView)
-        } catch(e: IOException){
-            e.printStackTrace()
-        }
+            Utils.loadPicture(imageUri, imageView, this)
     }
 
     fun imgUploadSuccess(url: String){
-        hideProgressDialog()
+//        hideProgressDialog()
         Toast.makeText(
             this,
             "SUCCESS! IMG URL : $url",
             Toast.LENGTH_SHORT
         ).show()
+
+        userProfileUrl = url
+        updateProfileData()
     }
 }

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.torem">
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/app_icon"
@@ -13,8 +15,10 @@
         android:roundIcon="@mipmap/app_icon_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Torem">
-        <activity android:name=".Activity.EditProfileActivity"
-            android:theme="@style/Theme.Torem.NoActionBar"></activity>
+        <activity android:name=".Activity.SettingsActivity"></activity>
+        <activity
+            android:name=".Activity.EditProfileActivity"
+            android:theme="@style/Theme.Torem.NoActionBar" />
         <activity android:name=".Activity.ProfileActivity" />
         <activity android:name=".Activity.TravelPlanActivity" />
         <activity
@@ -33,6 +37,7 @@
         <activity
             android:name=".Activity.DetailActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
@@ -40,4 +45,5 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCTLtGlWgAZngkRlmTX4nfJe7dcHrCNXbU" />
     </application>
+
 </manifest>

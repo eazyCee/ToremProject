@@ -7,6 +7,7 @@ import android.content.SharedPreferences
 import android.net.Uri
 import android.util.Log
 import com.example.torem.Activity.EditProfileActivity
+import com.example.torem.Activity.ProfileActivity
 import com.example.torem.data.User
 import com.example.torem.front.LoginActivity
 import com.example.torem.front.SignUpActivity
@@ -81,8 +82,32 @@ class FirestoreClass {
                     is LoginActivity->{
                         activity.userLoggedInSuccessfully(user)
                     }
+                    is ProfileActivity->{
+                        activity.userDetailsSuccess(user)
+                    }
+                    is EditProfileActivity->{
+                        activity.userDetailsSuccess(user)
+                    }
                 }
             }
+                .addOnFailureListener{ e->
+                    when(activity){
+                        is LoginActivity->{
+                            activity.hideProgressDialog()
+                        }
+                        is ProfileActivity->{
+                            activity.hideProgressDialog()
+                        }
+                        is EditProfileActivity->{
+                            activity.hideProgressDialog()
+                        }
+                    }
+                    Log.e(
+                            activity.javaClass.simpleName,
+                            "error while getting user details",
+                            e
+                    )
+                }
     }
 
     fun setUserDetails(activity: Activity, userHashMap: HashMap<String, Any>){
