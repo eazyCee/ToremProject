@@ -39,7 +39,9 @@ class TravelPlanActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
         binding.backButton.setOnClickListener {
-            finish()
+            val intent = Intent (this,HomeActivity::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
         }
         initPlaces()
         showData()

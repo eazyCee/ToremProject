@@ -77,11 +77,14 @@ class Add : Fragment() {
         autoPlaces2()
         autoPlaces3()
         binding.imageButton.setOnClickListener{
-            checked="Yes"
+            binding.apply.visibility = View.VISIBLE
             val intent =Intent()
             intent.type = "image/*"
             intent.action = Intent.ACTION_GET_CONTENT
             startActivityForResult(Intent.createChooser(intent,"Choose Picture"),111)
+        }
+        binding.apply.setOnClickListener{
+                uploadFile()
         }
         binding.radio1.setOnCheckedChangeListener { group, checkedId ->
             val rb = view?.findViewById<RadioButton>(checkedId)
@@ -96,9 +99,6 @@ class Add : Fragment() {
         binding.createButton.setOnClickListener{
             binding.progressBar.visibility = View.VISIBLE
             val nameTP = binding.editTitle.text.toString()
-            if(checked=="Yes"){
-            uploadFile()
-            }
             if (nameTP.isEmpty()){
                 binding.editTitle.error = "Please Enter a title!"
             }
@@ -121,6 +121,7 @@ class Add : Fragment() {
             val imageRef = FirebaseStorage.getInstance().reference.child("cover/$nameTp")
             imageRef.putFile(uri)
             imageRef.downloadUrl.addOnSuccessListener { Uri->
+                Toast.makeText(requireContext(),"Image Applied",Toast.LENGTH_SHORT).show()
                 val uri = Uri.toString()
                 url(uri)
             }
@@ -160,6 +161,7 @@ class Add : Fragment() {
                 val intent = Intent(context, TravelPlanActivity::class.java)
                 intent.putExtra("documentID",Title)
                 context?.startActivity(intent)}
+
             }
             .addOnFailureListener {
                 binding.progressBar.visibility = View.GONE
