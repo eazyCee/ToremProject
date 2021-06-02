@@ -23,6 +23,7 @@ import com.google.firebase.storage.StorageReference
 
 class FirestoreClass {
     private val mFirestore = FirebaseFirestore.getInstance()
+
     
     fun registerUser(activity: SignUpActivity, userInfo: User){
         mFirestore.collection("users")
@@ -50,6 +51,7 @@ class FirestoreClass {
 
         return currentUserID
     }
+
     fun getCurrentUserDetails(activity:Activity, uid: String){
         mFirestore.collection("users")
                 .document(uid)

@@ -125,6 +125,7 @@ class TravelPlanActivity : AppCompatActivity() {
                     binding.editDescription.text = it.getString("descriptionTP").toString()
                     mode = it.getString("mode1").toString()
                     mode2 = it.getString("mode2").toString()
+                    binding.creator.text = it.getString("userName").toString()
 
                     if (mode=="bicycling"){
                         binding.trans1.setImageResource(R.drawable.unmotor)

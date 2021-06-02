@@ -67,24 +67,27 @@ class Add : Fragment() {
     private val mAuth= FirebaseAuth.getInstance()
     private var checked:String = "No"
     var hashMap : HashMap<Int, String> = HashMap<Int, String> ()
+    private  var nameuser:String = ""
 
 
     override fun onCreateView(inflater : LayoutInflater, container : ViewGroup?, savedInstanceState : Bundle?) : View? {
         binding = AddFragmentBinding.inflate(layoutInflater,container,false)
         customize()
         initPlaces()
+        getCurrentUserName()
         autoPlaces()
         autoPlaces2()
         autoPlaces3()
         binding.imageButton.setOnClickListener{
-            binding.apply.visibility = View.VISIBLE
             val intent =Intent()
             intent.type = "image/*"
             intent.action = Intent.ACTION_GET_CONTENT
             startActivityForResult(Intent.createChooser(intent,"Choose Picture"),111)
+            binding.apply.visibility = View.VISIBLE
         }
         binding.apply.setOnClickListener{
                 uploadFile()
+            binding.apply.visibility = View.GONE
         }
         binding.radio1.setOnCheckedChangeListener { group, checkedId ->
             val rb = view?.findViewById<RadioButton>(checkedId)
@@ -103,6 +106,7 @@ class Add : Fragment() {
                 binding.editTitle.error = "Please Enter a title!"
             }
             val userID = FirestoreClass().getCurrentUserID()
+            val userName = nameuser
             val descriptionTP = binding.editDescription.text.toString()
             val firstLocation = location
             val secondLocation = location2
@@ -110,7 +114,7 @@ class Add : Fragment() {
             val covers = hashMap.get(1).toString()
             val mode1 = mode
             val mode2 = mode2
-            saveFireStore(firstLocation,secondLocation,thirdLocation,covers,nameTP,descriptionTP,mode1,mode2,userID)
+            saveFireStore(firstLocation,secondLocation,thirdLocation,covers,nameTP,descriptionTP,mode1,mode2,userID,userName)
         }
         return binding.root
     }
@@ -132,7 +136,7 @@ class Add : Fragment() {
         Log.d("add", "url: $uri")
     }
 
-    fun saveFireStore(FirstLocation:String,SecondLocation:String,Thirdlocation:String,Cover:String,Title:String,Description:String,Mode:String,Mode2:String,UserID:String) {
+    fun saveFireStore(FirstLocation:String,SecondLocation:String,Thirdlocation:String,Cover:String,Title:String,Description:String,Mode:String,Mode2:String,UserID:String,userName:String) {
         val db = FirebaseFirestore.getInstance()
         val travelPlan: MutableMap<String, Any> = HashMap()
         travelPlan["firstLocation"] = FirstLocation
@@ -144,6 +148,7 @@ class Add : Fragment() {
         travelPlan["mode1"] = Mode
         travelPlan["mode2"] = Mode2
         travelPlan["userID"] = UserID
+        travelPlan["userName"] = userName
 
         db.collection("TravelPlans").document(Title)
             .set(travelPlan)
@@ -168,6 +173,20 @@ class Add : Fragment() {
                 binding.save.text = "Failed"
             }
     }
+    fun getCurrentUserName(){
+        val db = FirebaseFirestore.getInstance()
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        db.collection("users")
+            .document(currentUser!!.uid)
+            .get()
+            .addOnSuccessListener {
+                nameuser = it.getString("username").toString()
+                Log.d("FC", "getCurrentUserName: $nameuser")
+
+            }
+
+    }
+
     fun initPlaces () {
         val apiKey="AIzaSyCTLtGlWgAZngkRlmTX4nfJe7dcHrCNXbU"
         Places.initialize(requireActivity().application, apiKey)

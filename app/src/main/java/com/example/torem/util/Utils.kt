@@ -40,7 +40,7 @@ object Utils {
         Glide.with(context)
                 .load(image)
                 .centerCrop()
-                .placeholder(R.drawable.user)
+                .placeholder(R.drawable.userprof)
                 .into(imageView)
     } catch(e: IOException)
     {
