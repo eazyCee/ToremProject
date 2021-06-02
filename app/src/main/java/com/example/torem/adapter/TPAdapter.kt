@@ -34,7 +34,7 @@ class TPAdapter(options: FirestoreRecyclerOptions<TravelPlan>) :
         holder.itemView.setOnClickListener {
             val context = holder.name.context
             val intent = Intent(context, TravelPlanActivity::class.java)
-            intent.putExtra("documentID", model.nameTP)
+            intent.putExtra("documentID", model.tpId)
             context.startActivity(intent)
         }
     }

@@ -35,9 +35,12 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener{
         binding = ActivityEditProfileBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        binding.back.setOnClickListener {
+            finish()
+        }
         Log.e("editedit", "loadeeed page")
 
-        Log.e("editedit", "got user dataaa")
+        Log.e("editedit", "got user data")
         if(intent.hasExtra(Utils.EXTRA_DETAILS)){
             userDetails = intent.getParcelableExtra(Utils.EXTRA_DETAILS)!!
         }
@@ -76,9 +79,7 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener{
                         )
                     }
                 }
-                R.id.back->{
-                    finish()
-                }
+
                 R.id.signupButton->{
                     Log.e("reg", "click successful")
                     showProgressDialog(resources.getString(R.string.please_wait))
@@ -103,7 +104,7 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener{
             "Details uploaded!",
             Toast.LENGTH_SHORT
         ).show()
-        startActivity(Intent(this, HomeActivity::class.java))
+        startActivity(Intent(this, ProfileActivity::class.java))
         finish()
     }
 
@@ -185,15 +186,7 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener{
     }
 
     fun imgUploadSuccess(url: String){
-//        hideProgressDialog()
-        Toast.makeText(
-            this,
-            "SUCCESS! IMG URL : $url",
-            Toast.LENGTH_SHORT
-        ).show()
-
         userProfileUrl = url
         updateProfileData()
     }
-
 }

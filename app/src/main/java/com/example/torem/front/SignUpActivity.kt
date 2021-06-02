@@ -25,6 +25,9 @@ class SignUpActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.back.setOnClickListener {
+            finish()
+        }
 
         binding.signupButton.setOnClickListener{
             registerUser()

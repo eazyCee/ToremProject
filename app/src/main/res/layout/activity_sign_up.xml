@@ -7,14 +7,16 @@
     tools:context=".Activity.HomeActivity">
 
     <ImageButton
+        android:id="@+id/back"
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:background="@color/transparant"
-        android:src="@drawable/ic_baseline_arrow_back_24"
+        android:layout_marginTop="50dp"
+        android:tint="@color/blue_main"
+        android:background="@color/transparants"
+        android:src="@drawable/ic_baseline_arrow_back_ios_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

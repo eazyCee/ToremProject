@@ -6,18 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Activity.HomeActivity">
 
-    <ImageButton
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:background="@color/transparant"
-        android:src="@drawable/ic_baseline_arrow_back_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"

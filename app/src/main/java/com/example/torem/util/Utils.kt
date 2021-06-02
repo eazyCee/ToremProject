@@ -24,8 +24,8 @@ object Utils {
     const val DESC: String = "desc"
     fun showImageChooser(activity: Activity) {
         val gallery = Intent(
-                Intent.ACTION_PICK,
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+            Intent.ACTION_PICK,
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI
         )
         activity.startActivityForResult(gallery, PICK_IMAGE_CODE)
     }
@@ -40,7 +40,7 @@ object Utils {
         Glide.with(context)
                 .load(image)
                 .centerCrop()
-                .placeholder(R.drawable.bromo)
+                .placeholder(R.drawable.user)
                 .into(imageView)
     } catch(e: IOException)
     {

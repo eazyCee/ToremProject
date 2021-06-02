@@ -13,6 +13,7 @@ import android.net.Uri
 import android.opengl.Visibility
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.os.Handler
 import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
@@ -31,7 +32,6 @@ import com.example.torem.Activity.TravelPlanActivity
 import com.example.torem.R
 import com.example.torem.databinding.AddFragmentBinding
 import com.example.torem.firestore.FirestoreClass
-import com.example.torem.util.Utils.getFileExtension
 import com.google.android.gms.common.api.Status
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.OnSuccessListener
@@ -60,13 +60,13 @@ class Add : Fragment() {
     private var location3 :String ="String"
     private var cover: String=""
     private var nameTp:String ="Sring"
-    lateinit var filePath: Uri
     private var uri: Uri = Uri.EMPTY
     private lateinit var binding: AddFragmentBinding
     private var mode:String=""
     private var mode2:String=""
     private val mAuth= FirebaseAuth.getInstance()
-    private var hashMap : HashMap<String,String> = HashMap<String, String> ()
+    private var checked:String = "No"
+    var hashMap : HashMap<Int, String> = HashMap<Int, String> ()
 
 
     override fun onCreateView(inflater : LayoutInflater, container : ViewGroup?, savedInstanceState : Bundle?) : View? {
@@ -77,6 +77,7 @@ class Add : Fragment() {
         autoPlaces2()
         autoPlaces3()
         binding.imageButton.setOnClickListener{
+            checked="Yes"
             val intent =Intent()
             intent.type = "image/*"
             intent.action = Intent.ACTION_GET_CONTENT
@@ -93,18 +94,20 @@ class Add : Fragment() {
 
         }
         binding.createButton.setOnClickListener{
+            binding.progressBar.visibility = View.VISIBLE
             val nameTP = binding.editTitle.text.toString()
+            if(checked=="Yes"){
+            uploadFile()
+            }
             if (nameTP.isEmpty()){
                 binding.editTitle.error = "Please Enter a title!"
             }
-
             val userID = FirestoreClass().getCurrentUserID()
             val descriptionTP = binding.editDescription.text.toString()
             val firstLocation = location
             val secondLocation = location2
             val thirdLocation = location3
-            val covers = url()
-            Log.e("coverphoto",covers)
+            val covers = hashMap.get(1).toString()
             val mode1 = mode
             val mode2 = mode2
             saveFireStore(firstLocation,secondLocation,thirdLocation,covers,nameTP,descriptionTP,mode1,mode2,userID)
@@ -113,24 +116,19 @@ class Add : Fragment() {
     }
 
     private fun uploadFile() {
+        mAuth.signInAnonymously()
         if (uri != null) {
-            val imageRef = FirebaseStorage.getInstance().reference.child("cover/"+nameTp+ System.currentTimeMillis()+"."+ com.example.torem.util.Utils.getFileExtension(requireActivity(), uri))
+            val imageRef = FirebaseStorage.getInstance().reference.child("cover/$nameTp")
             imageRef.putFile(uri)
-            imageRef.downloadUrl.addOnSuccessListener {
-                hashMap.put("url",it.toString())
+            imageRef.downloadUrl.addOnSuccessListener { Uri->
+                val uri = Uri.toString()
+                url(uri)
             }
         }
     }
-
-    private fun url():String {
-        if (binding.photo.drawable != null) {
-            uploadFile()
-            cover = hashMap.get("url").toString()
-
-        } else {
-            cover
-        }
-        return cover
+    private fun url(uri:String){
+        hashMap.put(1,uri)
+        Log.d("add", "url: $uri")
     }
 
     fun saveFireStore(FirstLocation:String,SecondLocation:String,Thirdlocation:String,Cover:String,Title:String,Description:String,Mode:String,Mode2:String,UserID:String) {
@@ -146,11 +144,7 @@ class Add : Fragment() {
         travelPlan["mode2"] = Mode2
         travelPlan["userID"] = UserID
 
-        val temp = Title + System.currentTimeMillis()
-
-        travelPlan["tpId"] = temp
-
-                db.collection("TravelPlans").document(temp)
+        db.collection("TravelPlans").document(Title)
             .set(travelPlan)
             .addOnSuccessListener {
                 if(Title.isEmpty()){
@@ -164,7 +158,7 @@ class Add : Fragment() {
                 binding.done.visibility = View.VISIBLE
 
                 val intent = Intent(context, TravelPlanActivity::class.java)
-                intent.putExtra("documentID",temp)
+                intent.putExtra("documentID",Title)
                 context?.startActivity(intent)}
             }
             .addOnFailureListener {
@@ -246,9 +240,8 @@ class Add : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode==111 && resultCode==Activity.RESULT_OK && data!=null) {
-            filePath =data.data!!
              uri = data.data!!
-            val bitmap=MediaStore.Images.Media.getBitmap(requireActivity().contentResolver,filePath)
+            val bitmap=MediaStore.Images.Media.getBitmap(requireActivity().contentResolver,uri)
             binding.photo.setImageBitmap(bitmap)
         }
     }

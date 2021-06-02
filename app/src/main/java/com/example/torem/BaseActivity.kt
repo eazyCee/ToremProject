@@ -51,6 +51,7 @@ open class BaseActivity : AppCompatActivity() {
 
     override fun onDestroy(){
         super.onDestroy()
+        mProgressDialog = Dialog(this)
         mProgressDialog.dismiss()
     }
 }

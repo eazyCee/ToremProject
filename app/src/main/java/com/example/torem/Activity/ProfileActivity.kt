@@ -53,6 +53,8 @@ class ProfileActivity : BaseActivity(), View.OnClickListener {
 
         binding.username.text = user.username
 
+        binding.description.text = user.desc
+
         Utils.loadPicture(user.image, binding.circleImageView,this)
     }
 
