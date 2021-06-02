@@ -66,6 +66,7 @@ class Add : Fragment() {
     private var mode:String=""
     private var mode2:String=""
     private val mAuth= FirebaseAuth.getInstance()
+    private var hashMap : HashMap<String,String> = HashMap<String, String> ()
 
 
     override fun onCreateView(inflater : LayoutInflater, container : ViewGroup?, savedInstanceState : Bundle?) : View? {
@@ -102,12 +103,7 @@ class Add : Fragment() {
             val firstLocation = location
             val secondLocation = location2
             val thirdLocation = location3
-            val covers =
-                if(binding.photo.drawable!= null) {
-                uploadFile()
-                val sharedPreferences=this.requireActivity().getSharedPreferences("A",Context.MODE_PRIVATE)
-                sharedPreferences.getString("avatar","")!!
-            } else{cover}
+            val covers = url()
             Log.e("coverphoto",covers)
             val mode1 = mode
             val mode2 = mode2
@@ -121,18 +117,20 @@ class Add : Fragment() {
             val imageRef = FirebaseStorage.getInstance().reference.child("cover/"+nameTp+ System.currentTimeMillis()+"."+ com.example.torem.util.Utils.getFileExtension(requireActivity(), uri))
             imageRef.putFile(uri)
             imageRef.downloadUrl.addOnSuccessListener {
-                val sharedPreferences = requireActivity().getSharedPreferences(
-                    "A",
-                    Context.MODE_PRIVATE
-                )
-                val editor:SharedPreferences.Editor =sharedPreferences.edit()
-                editor.putString(
-                    "avatar",
-                    "${it.toString()}"
-                )
-                editor.apply()
+                hashMap.put("url",it.toString())
             }
         }
+    }
+
+    private fun url():String {
+        if (binding.photo.drawable != null) {
+            uploadFile()
+            cover = hashMap.get("url").toString()
+
+        } else {
+            cover
+        }
+        return cover
     }
 
     fun saveFireStore(FirstLocation:String,SecondLocation:String,Thirdlocation:String,Cover:String,Title:String,Description:String,Mode:String,Mode2:String,UserID:String) {
