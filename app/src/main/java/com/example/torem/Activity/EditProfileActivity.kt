@@ -9,6 +9,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
@@ -27,18 +28,20 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener{
     private lateinit var binding: ActivityEditProfileBinding
     private lateinit var userDetails: User
     private var selectedImageUri: Uri? = null
-    private var userProfileUrl: String = ""
+    private var userProfileUrl: String? = ""
+    private var uid: String? =""
     override fun onCreate(savedInstanceState: Bundle?) {
-        val sharedPreferences = this.getSharedPreferences(Utils.TOREM_PREFS,
-                Context.MODE_PRIVATE)
+
         binding = ActivityEditProfileBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        Log.e("editedit", "loadeeed page")
 
+        Log.e("editedit", "got user dataaa")
         if(intent.hasExtra(Utils.EXTRA_DETAILS)){
             userDetails = intent.getParcelableExtra(Utils.EXTRA_DETAILS)!!
         }
-
+        uid = userDetails.id
         getUserDetails()
 
         binding.inputName.isEnabled = true
@@ -55,7 +58,7 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener{
 
     override fun onClick(v: View?) {
         if(v!= null){
-            when(v!!.id){
+            when(v.id){
                 R.id.picture->{
                     if(ContextCompat.checkSelfPermission(
                             this,
@@ -73,16 +76,19 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener{
                         )
                     }
                 }
-                R.id.back_button->{
+                R.id.back->{
                     finish()
                 }
-                R.id.signUp->{
+                R.id.signupButton->{
+                    Log.e("reg", "click successful")
                     showProgressDialog(resources.getString(R.string.please_wait))
-
+                    Log.e("reg", "dialog shown")
                     if(userProfileUrl!=null){
                         FirestoreClass().uploadImageToCloud(this,selectedImageUri)
                     } else{
+                        Log.e("reg", "inside if else")
                         updateProfileData()
+                        Log.e("reg", "updated")
                     }
                 }
             }
@@ -103,7 +109,7 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener{
 
     private fun getUserDetails(){
         showProgressDialog(resources.getString(R.string.please_wait))
-        FirestoreClass().getUserDetails(this)
+        FirestoreClass().getCurrentUserDetails(this, uid!!)
     }
 
     fun userDetailsSuccess(user: User){
@@ -134,13 +140,13 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener{
         }
 
 
-        if(userProfileUrl.isNotEmpty()){
-            userHashmap[Utils.IMAGE] = userProfileUrl
+        if(userProfileUrl!!.isNotEmpty()){
+            userHashmap[Utils.IMAGE] = userProfileUrl!!
         }
 
         userHashmap[Utils.PROFILE_COMPLETE] = true
 
-        FirestoreClass().setUserDetails(this, userHashmap)
+        FirestoreClass().setUserDetails(this, userHashmap, uid!!)
     }
 
     override fun onRequestPermissionsResult(
@@ -189,4 +195,5 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener{
         userProfileUrl = url
         updateProfileData()
     }
+
 }

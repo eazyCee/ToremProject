@@ -1,5 +1,6 @@
 package com.example.torem.data
 
+import android.os.Parcel
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 

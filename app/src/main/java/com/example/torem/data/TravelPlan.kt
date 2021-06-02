@@ -14,6 +14,9 @@ import kotlinx.parcelize.Parcelize
          var secondLocation: String?=null
          var firstLocation: String?=null
 
+         var tpId:String? = null
+         var userID:String? = null
+
 
          constructor()
  }

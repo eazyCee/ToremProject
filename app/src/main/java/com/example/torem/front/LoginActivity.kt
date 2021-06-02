@@ -17,10 +17,11 @@ import com.example.torem.util.Utils
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : BaseActivity(), View.OnClickListener {
-    val binding = ActivityLoginBinding.inflate(layoutInflater)
+    private lateinit var binding:ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.signUp.setOnClickListener(this)

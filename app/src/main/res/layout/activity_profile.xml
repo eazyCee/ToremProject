@@ -65,4 +65,18 @@
         app:layout_constraintTop_toBottomOf="@+id/circleImageView"
         android:gravity="center"/>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/profile_tp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_travel_plan"/>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

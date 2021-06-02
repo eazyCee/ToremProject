@@ -31,6 +31,7 @@ import com.example.torem.Activity.TravelPlanActivity
 import com.example.torem.R
 import com.example.torem.databinding.AddFragmentBinding
 import com.example.torem.firestore.FirestoreClass
+import com.example.torem.util.Utils.getFileExtension
 import com.google.android.gms.common.api.Status
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.OnSuccessListener
@@ -107,6 +108,7 @@ class Add : Fragment() {
                 val sharedPreferences=this.requireActivity().getSharedPreferences("A",Context.MODE_PRIVATE)
                 sharedPreferences.getString("avatar","")!!
             } else{cover}
+            Log.e("coverphoto",covers)
             val mode1 = mode
             val mode2 = mode2
             saveFireStore(firstLocation,secondLocation,thirdLocation,covers,nameTP,descriptionTP,mode1,mode2,userID)
@@ -115,9 +117,8 @@ class Add : Fragment() {
     }
 
     private fun uploadFile() {
-        mAuth.signInAnonymously()
         if (uri != null) {
-            val imageRef = FirebaseStorage.getInstance().reference.child("cover/$nameTp")
+            val imageRef = FirebaseStorage.getInstance().reference.child("cover/"+nameTp+ System.currentTimeMillis()+"."+ com.example.torem.util.Utils.getFileExtension(requireActivity(), uri))
             imageRef.putFile(uri)
             imageRef.downloadUrl.addOnSuccessListener {
                 val sharedPreferences = requireActivity().getSharedPreferences(
@@ -147,7 +148,11 @@ class Add : Fragment() {
         travelPlan["mode2"] = Mode2
         travelPlan["userID"] = UserID
 
-        db.collection("TravelPlans").document(Title)
+        val temp = Title + System.currentTimeMillis()
+
+        travelPlan["tpId"] = temp
+
+                db.collection("TravelPlans").document(temp)
             .set(travelPlan)
             .addOnSuccessListener {
                 if(Title.isEmpty()){
@@ -161,7 +166,7 @@ class Add : Fragment() {
                 binding.done.visibility = View.VISIBLE
 
                 val intent = Intent(context, TravelPlanActivity::class.java)
-                intent.putExtra("documentID",Title)
+                intent.putExtra("documentID",temp)
                 context?.startActivity(intent)}
             }
             .addOnFailureListener {

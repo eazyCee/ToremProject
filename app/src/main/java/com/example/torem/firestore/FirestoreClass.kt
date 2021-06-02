@@ -7,8 +7,11 @@ import android.content.SharedPreferences
 import android.net.Uri
 import android.util.Log
 import com.example.torem.Activity.EditProfileActivity
+import com.example.torem.Activity.HomeActivity
 import com.example.torem.Activity.ProfileActivity
+import com.example.torem.data.TravelPlan
 import com.example.torem.data.User
+import com.example.torem.fragment.homefragment.Home
 import com.example.torem.front.LoginActivity
 import com.example.torem.front.SignUpActivity
 import com.example.torem.util.Utils
@@ -47,13 +50,78 @@ class FirestoreClass {
 
         return currentUserID
     }
+    fun getCurrentUserDetails(activity:Activity, uid: String){
+        mFirestore.collection("users")
+                .document(uid)
+                .get()
+                .addOnSuccessListener{document->
+                    Log.i("testing",document.toString())
+
+                    val user = document.toObject(User::class.java)!!
+
+                    val sharedPreferences = activity.getSharedPreferences(
+                            Utils.TOREM_PREFS,
+                            Context.MODE_PRIVATE
+                    )
+
+                    val editor: SharedPreferences.Editor = sharedPreferences.edit()
+                    editor.putString(
+                            "uid",
+                            "${user.id}"
+                    )
+                    editor.putString(
+                            Utils.CURRENT_USERNAME,
+                            "${user.username}"
+                    )
+                    editor.putString(
+                            "user_description",
+                            "${user.desc}"
+                    )
+                    editor.putString(
+                            "user_name",
+                            "${user.name}"
+                    )
+                    editor.apply()
+
+
+                    when(activity){
+                        is LoginActivity->{
+                            activity.userLoggedInSuccessfully(user)
+                        }
+                        is ProfileActivity->{
+                            activity.userDetailsSuccess(user)
+                        }
+                        is EditProfileActivity->{
+                            activity.userDetailsSuccess(user)
+                        }
+                    }
+                }
+                .addOnFailureListener{ e->
+                    when(activity){
+                        is LoginActivity->{
+                            activity.hideProgressDialog()
+                        }
+                        is ProfileActivity->{
+                            activity.hideProgressDialog()
+                        }
+                        is EditProfileActivity->{
+                            activity.hideProgressDialog()
+                        }
+                    }
+                    Log.e(
+                            activity.javaClass.simpleName,
+                            "error while getting user details",
+                            e
+                    )
+                }
+    }
 
     fun getUserDetails(activity: Activity){
         mFirestore.collection("users")
             .document(getCurrentUserID())
             .get()
             .addOnSuccessListener{document->
-                Log.i(activity.javaClass.simpleName,document.toString())
+                Log.i("testing",document.toString())
 
                 val user = document.toObject(User::class.java)!!
 
@@ -63,6 +131,10 @@ class FirestoreClass {
                 )
 
                 val editor: SharedPreferences.Editor = sharedPreferences.edit()
+                editor.putString(
+                        "uid",
+                        "${user.id}"
+                )
                 editor.putString(
                     Utils.CURRENT_USERNAME,
                     "${user.username}"
@@ -74,6 +146,10 @@ class FirestoreClass {
                 editor.putString(
                     "user_name",
                     "${user.name}"
+                )
+                editor.putString(
+                        "image",
+                        "${user.image}"
                 )
                 editor.apply()
 
@@ -110,8 +186,10 @@ class FirestoreClass {
                 }
     }
 
-    fun setUserDetails(activity: Activity, userHashMap: HashMap<String, Any>){
-        mFirestore.collection("users").document(getCurrentUserID())
+
+
+    fun setUserDetails(activity: Activity, userHashMap: HashMap<String, Any>, uid:String){
+        mFirestore.collection("users").document(uid)
             .update(userHashMap)
             .addOnSuccessListener {
                 when(activity){
@@ -170,5 +248,26 @@ class FirestoreClass {
                     e
                 )
             }
+    }
+    fun getTravelPlans(activity: Activity){
+        mFirestore.collection("TravelPlans")
+                .whereEqualTo("userID", getCurrentUserID())
+                .get()
+                .addOnSuccessListener {
+                    Log.e("Travel plans", it.documents.toString())
+
+                    val travelPlan: ArrayList<TravelPlan> = ArrayList()
+                    for(i in it.documents){
+                        val tp = i.toObject(TravelPlan::class.java)
+                        tp!!.tpId = i.id
+
+                        travelPlan.add(tp)
+                    }
+                    when(activity){
+                        is ProfileActivity->{
+                            activity.tpFromFirestoreSuccess(travelPlan)
+                        }
+                    }
+                }
     }
 }

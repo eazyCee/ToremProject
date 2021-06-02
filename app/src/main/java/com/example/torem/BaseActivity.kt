@@ -12,11 +12,6 @@ open class BaseActivity : AppCompatActivity() {
 
     private lateinit var mProgressDialog: Dialog
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_base)
-    }
-
     fun showErrorSnackBar(message: String, errorMessage: Boolean){
         val snackBar = Snackbar.make(findViewById(android.R.id.content),message, Snackbar.LENGTH_LONG)
         val snackBarView = snackBar.view
@@ -24,26 +19,25 @@ open class BaseActivity : AppCompatActivity() {
         if(errorMessage){
             snackBarView.setBackgroundColor(
                 ContextCompat.getColor(
-                    this,
+                    this@BaseActivity,
                     R.color.pink
                 )
             )
         }else{
             snackBarView.setBackgroundColor(
                 ContextCompat.getColor(
-                    this,
+                    this@BaseActivity,
                     R.color.green
                 )
             )
         }
+        snackBar.show()
     }
 
     fun showProgressDialog(text: String){
         mProgressDialog = Dialog(this)
         mProgressDialog.setContentView(R.layout.progress_dialog)
-        val dialogText = TextView(findViewById(R.id.tv_progress_text))
-        dialogText.text = text
-
+        mProgressDialog.findViewById<TextView>(R.id.tv_progress_text).text = text
         mProgressDialog.setCancelable(false)
         mProgressDialog.setCanceledOnTouchOutside(false)
 
@@ -51,6 +45,12 @@ open class BaseActivity : AppCompatActivity() {
     }
 
     fun hideProgressDialog(){
+        mProgressDialog.dismiss()
+    }
+
+
+    override fun onDestroy(){
+        super.onDestroy()
         mProgressDialog.dismiss()
     }
 }
