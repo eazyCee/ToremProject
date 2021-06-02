@@ -47,4 +47,17 @@ object Utils {
         e.printStackTrace()
     }
 }
+
+    fun loadPictureFrag(image: String?, imageView: ImageView, context: Context) {
+        try{
+            Glide.with(context)
+                    .load(image)
+                    .centerCrop()
+                    .placeholder(R.drawable.userprof)
+                    .into(imageView)
+        } catch(e: IOException)
+        {
+            e.printStackTrace()
+        }
+    }
 }

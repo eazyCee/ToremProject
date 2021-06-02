@@ -46,6 +46,7 @@ import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.installations.Utils
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 
 class Add : Fragment() {
     private lateinit var placesClient: PlacesClient
@@ -68,6 +69,8 @@ class Add : Fragment() {
     private var checked:String = "No"
     var hashMap : HashMap<Int, String> = HashMap<Int, String> ()
     private  var nameuser:String = ""
+    
+    private val temp:String = System.currentTimeMillis().toString()
 
 
     override fun onCreateView(inflater : LayoutInflater, container : ViewGroup?, savedInstanceState : Bundle?) : View? {
@@ -120,14 +123,15 @@ class Add : Fragment() {
     }
 
     private fun uploadFile() {
-        mAuth.signInAnonymously()
         if (uri != null) {
-            val imageRef = FirebaseStorage.getInstance().reference.child("cover/$nameTp")
-            imageRef.putFile(uri)
-            imageRef.downloadUrl.addOnSuccessListener { Uri->
-                Toast.makeText(requireContext(),"Image Applied",Toast.LENGTH_SHORT).show()
-                val uri = Uri.toString()
-                url(uri)
+            val imageRef: StorageReference = FirebaseStorage.getInstance().reference.child("cover/"+
+                    "tp_Image" + System.currentTimeMillis().toString())
+            imageRef.putFile(uri).addOnSuccessListener {
+                it.metadata!!.reference!!.downloadUrl.addOnSuccessListener { Uri->
+                    Toast.makeText(requireContext(),"Image Applied",Toast.LENGTH_SHORT).show()
+                    val uri = Uri.toString()
+                    url(uri)
+                }
             }
         }
     }
@@ -149,8 +153,10 @@ class Add : Fragment() {
         travelPlan["mode2"] = Mode2
         travelPlan["userID"] = UserID
         travelPlan["userName"] = userName
+        var temp = Title + System.currentTimeMillis()
+        travelPlan["tpId"] = temp
 
-        db.collection("TravelPlans").document(Title)
+        db.collection("TravelPlans").document(temp)
             .set(travelPlan)
             .addOnSuccessListener {
                 if(Title.isEmpty()){
@@ -164,7 +170,7 @@ class Add : Fragment() {
                 binding.done.visibility = View.VISIBLE
 
                 val intent = Intent(context, TravelPlanActivity::class.java)
-                intent.putExtra("documentID",Title)
+                intent.putExtra("documentID",temp)
                 context?.startActivity(intent)}
 
             }

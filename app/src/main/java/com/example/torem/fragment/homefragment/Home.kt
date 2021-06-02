@@ -58,9 +58,14 @@ class Home : Fragment(), View.OnClickListener {
     ): View? {
         val sharedPreferences = this.requireActivity().getSharedPreferences(Utils.TOREM_PREFS,
             Context.MODE_PRIVATE)
+        val image = sharedPreferences.getString("image", "")
         val username = sharedPreferences.getString(Utils.CURRENT_USERNAME, "")!!
 
         binding = HomeFragmentBinding.inflate(layoutInflater, container, false)
+
+        if(image!!.isNotEmpty()) {
+            Utils.loadPictureFrag(image, binding.profile, requireActivity())
+        }
         binding.userName.text = username
 
         binding.profile.setOnClickListener(this)

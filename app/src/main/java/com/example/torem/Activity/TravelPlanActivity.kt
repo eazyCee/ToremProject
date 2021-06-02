@@ -42,6 +42,7 @@ class TravelPlanActivity : AppCompatActivity() {
             val intent = Intent (this,HomeActivity::class.java)
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             startActivity(intent)
+            finish()
         }
         initPlaces()
         showData()
@@ -199,13 +200,16 @@ class TravelPlanActivity : AppCompatActivity() {
                 //get Name
                 binding.location1.text= place.name
                 //get Photo
-                val photoMetadata=place.photoMetadatas!![0]
-                val photoRequest = FetchPhotoRequest.builder(photoMetadata).build()
-                placesClient.fetchPhoto(photoRequest)
-                    .addOnSuccessListener { fetchPlaceResponse->
-                        val bitmap = fetchPlaceResponse.bitmap
-                        binding.photo1.setImageBitmap(bitmap)
-                    }
+                if(!place.photoMetadatas.isNullOrEmpty()) {
+                    val photoMetadata = place.photoMetadatas!![0]
+
+                    val photoRequest = FetchPhotoRequest.builder(photoMetadata).build()
+                    placesClient.fetchPhoto(photoRequest)
+                        .addOnSuccessListener { fetchPlaceResponse ->
+                            val bitmap = fetchPlaceResponse.bitmap
+                            binding.photo1.setImageBitmap(bitmap)
+                        }
+                }
             }
     }
     private fun getPlaceCover2(placeId:String?) {

@@ -36,6 +36,7 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener{
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         binding.back.setOnClickListener {
+            startActivity(Intent(this, HomeActivity::class.java))
             finish()
         }
         Log.e("editedit", "loadeeed page")
@@ -46,6 +47,8 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener{
         }
         uid = userDetails.id
         getUserDetails()
+
+        Utils.loadPicture(userDetails.image, binding.picture,this)
 
         binding.inputName.isEnabled = true
         binding.inputName.setText(userDetails.name)
