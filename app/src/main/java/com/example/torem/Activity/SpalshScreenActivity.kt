@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.preference.PreferenceManager.getDefaultSharedPreferences
 import com.example.torem.R
 import com.example.torem.front.GetStarted
 import com.example.torem.front.LoginActivity
@@ -21,10 +22,7 @@ class SpalshScreenActivity : AppCompatActivity() {
 
         var user = FirebaseAuth.getInstance().currentUser
 
-        val sharedPreferences = getSharedPreferences(
-                "getstarted",
-                Context.MODE_PRIVATE
-        )
+        val sharedPreferences = getDefaultSharedPreferences(this)
 
         var isJustInstalled = sharedPreferences.getBoolean("justInstalled", true)
 

@@ -223,13 +223,16 @@ class TravelPlanActivity : AppCompatActivity() {
                 //get Name
                 binding.location2.text= place.name
                 //get Photo
-                val photoMetadata=place.photoMetadatas!![0]
-                val photoRequest = FetchPhotoRequest.builder(photoMetadata).build()
-                placesClient.fetchPhoto(photoRequest)
-                    .addOnSuccessListener { fetchPlaceResponse->
-                        val bitmap = fetchPlaceResponse.bitmap
-                        binding.photo2.setImageBitmap(bitmap)
-                    }
+                if(!place.photoMetadatas.isNullOrEmpty()) {
+                    val photoMetadata = place.photoMetadatas!![0]
+                    val photoRequest = FetchPhotoRequest.builder(photoMetadata).build()
+                    placesClient.fetchPhoto(photoRequest)
+                            .addOnSuccessListener { fetchPlaceResponse ->
+                                val bitmap = fetchPlaceResponse.bitmap
+                                binding.photo2.setImageBitmap(bitmap)
+                            }
+
+                }
             }
     }
     private fun getPlaceCover3(placeId:String?) {
@@ -243,13 +246,15 @@ class TravelPlanActivity : AppCompatActivity() {
                 //get Name
                 binding.location3.text= place.name
                 //get Photo
-                val photoMetadata=place.photoMetadatas!![0]
-                val photoRequest = FetchPhotoRequest.builder(photoMetadata).build()
-                placesClient.fetchPhoto(photoRequest)
-                    .addOnSuccessListener { fetchPlaceResponse->
-                        val bitmap = fetchPlaceResponse.bitmap
-                        binding.photo3.setImageBitmap(bitmap)
-                    }
+                if(!place.photoMetadatas.isNullOrEmpty()) {
+                    val photoMetadata = place.photoMetadatas!![0]
+                    val photoRequest = FetchPhotoRequest.builder(photoMetadata).build()
+                    placesClient.fetchPhoto(photoRequest)
+                            .addOnSuccessListener { fetchPlaceResponse ->
+                                val bitmap = fetchPlaceResponse.bitmap
+                                binding.photo3.setImageBitmap(bitmap)
+                            }
+                }
             }
     }
 }

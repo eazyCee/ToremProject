@@ -48,8 +48,9 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener{
         uid = userDetails.id
         getUserDetails()
 
-        Utils.loadPicture(userDetails.image, binding.picture,this)
-
+        if(userDetails.image.isNotEmpty()) {
+            Utils.loadPicture(userDetails.image, binding.picture, this)
+        }
         binding.inputName.isEnabled = true
         binding.inputName.setText(userDetails.name)
 
@@ -87,7 +88,7 @@ class EditProfileActivity : BaseActivity(), View.OnClickListener{
                     Log.e("reg", "click successful")
                     showProgressDialog(resources.getString(R.string.please_wait))
                     Log.e("reg", "dialog shown")
-                    if(userProfileUrl!=null){
+                    if(userProfileUrl!!.isNotEmpty()){
                         FirestoreClass().uploadImageToCloud(this,selectedImageUri)
                     } else{
                         Log.e("reg", "inside if else")
