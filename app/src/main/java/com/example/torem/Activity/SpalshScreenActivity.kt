@@ -14,6 +14,7 @@ import com.example.torem.front.LoginActivity
 import com.example.torem.util.Utils
 import com.google.firebase.auth.FirebaseAuth
 
+@Suppress("DEPRECATION")
 class SpalshScreenActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
