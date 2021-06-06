@@ -34,7 +34,7 @@ Last but not least, our machine learning team is made up of Yohan Lazarus and Ag
 
 # **APIs Used**
 - Google Places
->Used to display information about places searched by the users.
+> Used to display information about places searched by the users.
 - Google Map SDK
 > Used to display local spots near the user's current location.
 - Google Distance Matrix
