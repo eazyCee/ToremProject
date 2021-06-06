@@ -34,6 +34,7 @@
         <activity android:name=".front.SignUpActivity" />
         <activity android:name=".front.LoginActivity" />
         <activity android:name=".Activity.HomeActivity" />
+        <activity android:name=".front.GetStarted"/>
         <activity
             android:name=".Activity.DetailActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
