@@ -15,16 +15,10 @@ Our cloud computing team comprises of Maxi Millian Haris and Gery Santoso Utama,
 Last but not least, our machine learning team is made up of Yohan Lazarus and Agus Wisnu Kusuma Nata, both from Udayana University.
 
 # **Application Snapshots**
-## Splashscreen
- ![Splashscreen](/ToremDocs/Splashscreen.jpg)
 ## Login
  ![Login](/ToremDocs/Login.jpg)
-## Register
-![Register](/ToremDocs/SignUp.jpg)
 ## Home
 ![Home](/ToremDocs/Home.jpg)
-## New Travel Plan
-![NewTP](/ToremDocs/NewTravelPlan.jpg) 
 ## View Travel Plan
 ![ViewTP](/ToremDocs/ViewTravelPlan.jpg)
 ## Explore
