@@ -33,9 +33,9 @@ Last but not least, our machine learning team is made up of Yohan Lazarus and Ag
 ![Places](/ToremDocs/Places.jpg)
 
 # **APIs Used**
-Google Places
-> Used to display information about places searched by the users.
-Google Map SDK
+- Google Places
+>Used to display information about places searched by the users.
+- Google Map SDK
 > Used to display local spots near the user's current location.
-Google Distance Matrix
+- Google Distance Matrix
 > Used to calculate the distance and length of travel between two spots.
